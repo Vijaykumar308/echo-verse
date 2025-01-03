@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
   return (
-    <aside className="w-[16%] bg-gray-100 border-r flex flex-col justify-between fixed min-h-screen">
+    <aside className="w-[16%] bg-gray-50 border-r flex flex-col justify-between fixed min-h-screen">
     <div>
       <h1 className="text-2xl font-bold my-10 text-center">Echo Verse</h1>
       <nav className='p-1'>

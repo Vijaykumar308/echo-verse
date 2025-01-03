@@ -4,7 +4,7 @@ import FriendSuggestions from '../../components/FriendSuggestions'
 function RightSidebar() {
   return (
     <aside className="w-1/5 bg-gray-100 border-l fixed right-0 min-h-screen">
-        <ul className="">
+        <ul>
             <FriendSuggestions />
         </ul>
     </aside>

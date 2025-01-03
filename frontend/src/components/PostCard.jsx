@@ -2,6 +2,7 @@ import React from 'react'
 import { CiHeart, CiShare2 } from 'react-icons/ci'
 import { FaArrowUp, FaStar } from 'react-icons/fa'
 import { CiBookmark } from "react-icons/ci";
+import { IoMdPersonAdd } from 'react-icons/io';
 
 function PostCard({item}) {
   return (
@@ -16,7 +17,7 @@ function PostCard({item}) {
            <span className="ml-4 font-semibold">@vijaykumar308</span>
          </div>
          <button className="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600">
-           Friend
+         <IoMdPersonAdd size={18}/>
          </button>
        </div>
        <div className="p-4">
