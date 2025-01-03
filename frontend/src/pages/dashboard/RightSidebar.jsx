@@ -1,12 +1,11 @@
 import React from 'react'
+import FriendSuggestions from '../../components/FriendSuggestions'
 
 function RightSidebar() {
   return (
-    <aside className="w-1/5 bg-gray-100 p-5 border-l">
-        <ul className="space-y-4">
-            <li className="text-blue-500">@Vijaykumr308</li>
-            <li className="text-blue-500">@John6754</li>
-            <li className="text-blue-500">@pual_waston654</li>
+    <aside className="w-1/5 bg-gray-100 border-l fixed right-0 min-h-screen">
+        <ul className="">
+            <FriendSuggestions />
         </ul>
     </aside>
   )
