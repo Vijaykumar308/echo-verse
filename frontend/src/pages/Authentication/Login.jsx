@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -66,9 +67,9 @@ const Login = () => {
 
               <p className="text-sm text-center">
                 Don't have an account?{" "}
-                <a href="#" className="text-blue-600 hover:underline">
+                <NavLink to="/register" className="text-blue-600 hover:underline">
                   Sign up
-                </a>
+                </NavLink>
               </p>
             </form>
           </div>
