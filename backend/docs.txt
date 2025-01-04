@@ -1,0 +1,4 @@
+mongodb username: 308vijaykumar
+mongodb db pass: Hvo7PWrfVa5ohq3D
+
+mongodb+srv://echoverse:echoverse@cluster0.fd2hv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
