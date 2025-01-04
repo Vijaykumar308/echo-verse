@@ -50,7 +50,6 @@ export const register = catchAsyncError( async(req, res, next) => {
 
 export const login = catchAsyncError(async(req,res, next) => {
     try {
-        
         const {username, password} = req.body;
 
         if(!username || !password) {
@@ -71,7 +70,17 @@ export const login = catchAsyncError(async(req,res, next) => {
 
         sendToken(userExist, 200, "Login Successfully", res);
     } catch (error) {
-        console.log(error);
         return next(new ErrorHandler(error, 500));
     }
 });
+
+export const logout = catchAsyncError(async(req, res, next) => {
+    res.status(200).cookie("token", "", {
+        expires: new Date(Date.now()),
+        httpOnly:true
+    })
+    .json({
+        success:true,
+        message:"Logged out Successfully"
+    })
+})
