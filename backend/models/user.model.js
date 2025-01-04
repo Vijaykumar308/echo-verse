@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config({});
 
 const userSchema = new mongoose.Schema({
     username: String,
@@ -13,6 +17,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         minLength: [6, "Password must have at least 6 characters"],
         maxLength: [32, "Password must have at most 32 characters"],
+        select:false
     },
     isAgreeTermsAndConditions: {
         type: Boolean,
@@ -50,11 +55,17 @@ userSchema.pre('save', async function(next) {
         next();
     }
 
-    this.password = await bcrypt.hash(this.password, 10);
+    this.password = bcrypt.hash(this.password, 10);
 })
 
-userSchema.methods.comparePassword = async (enteredPassword) => {
+userSchema.methods.comparePassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);    
+}
+
+userSchema.methods.generateToken = function() {
+    return jwt.sign({id:this._id},process.env.JWT_SECRET_KEY, {
+        expiresIn:process.env.JWT_TOKEN_EXPIRY_TIME
+    });
 }
 
 export const User = mongoose.model("User", userSchema);

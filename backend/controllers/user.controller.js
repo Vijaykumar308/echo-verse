@@ -1,6 +1,7 @@
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/error.js";
 import { User } from "../models/user.model.js";
+import { sendToken } from "../utils/sendToken.js";
 
 export const register = catchAsyncError( async(req, res, next) => {
     try {
@@ -10,7 +11,7 @@ export const register = catchAsyncError( async(req, res, next) => {
             return next(new ErrorHandler("All fields are required", 400));
         }
 
-        const existingUser = await User.findOne({
+        const existingUser = User.findOne({
             $or:[
                 { username },
                 { email  }
@@ -31,16 +32,46 @@ export const register = catchAsyncError( async(req, res, next) => {
    
         const user = await User.create(userData);
         let userCreated = await user.save(); 
-        userCreated = user.toObject();
-        delete userCreated.password;
+
         if(userCreated) {
-            res.status(201).json({
+            return res.status(201).json({
                 success:true,
                 user:userCreated,
             })
+        }
+        else {
+            return next(new ErrorHandler("Data not saved, Try Again", 500));   
         }
 
     } catch (error) {
         return next(new ErrorHandler(error, 500));       
     }
-})
+});
+
+export const login = catchAsyncError(async(req,res, next) => {
+    try {
+        
+        const {username, password} = req.body;
+
+        if(!username || !password) {
+            return next(new ErrorHandler("username or password required", 400));
+        }
+
+        const userExist = await User.findOne({username}).select("+password");
+
+        if(!userExist) {
+            return next(new ErrorHandler("Invalid username or password", 403));
+        }
+
+        const isPasswordMatched = await userExist.comparePassword(password);
+
+        if(!isPasswordMatched) {
+            return next(new ErrorHandler("Invalid email or password", 400));
+        }
+
+        sendToken(userExist, 200, "Login Successfully", res);
+    } catch (error) {
+        console.log(error);
+        return next(new ErrorHandler(error, 500));
+    }
+});
