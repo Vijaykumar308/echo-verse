@@ -10,24 +10,18 @@ export const register = catchAsyncError( async(req, res, next) => {
             return next(new ErrorHandler("All fields are required", 400));
         }
 
-        const existingUser = User.findOne({
-            $and:[
-                {
-                    username,
-                },
-                {
-                    email   
-                }
+        const existingUser = await User.findOne({
+            $or:[
+                { username },
+                { email  }
             ]
         });
 
         
-        // if(existingUser) {
-        //     console.log(existingUser);
-        //     return next(new ErrorHandler("username or email Already Exist", 400));
-        // }
+        if(existingUser) {
+            return next(new ErrorHandler(`username or email Already Exist`, 400));
+        }
 
-        
         const userData = {
             username,
             email,
@@ -36,17 +30,17 @@ export const register = catchAsyncError( async(req, res, next) => {
         }
    
         const user = await User.create(userData);
-        const isUserCreated = await user.save(); 
-        if(isUserCreated) {
+        let userCreated = await user.save(); 
+        userCreated = user.toObject();
+        delete userCreated.password;
+        if(userCreated) {
             res.status(201).json({
                 success:true,
-                user:isUserCreated,
+                user:userCreated,
             })
         }
 
     } catch (error) {
-        // console.log('ererereeerrrvee');
-        return next(new ErrorHandler(error, 500));
-        // console.log(error);        
+        return next(new ErrorHandler(error, 500));       
     }
 })
