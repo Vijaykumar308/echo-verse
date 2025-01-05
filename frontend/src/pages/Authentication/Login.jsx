@@ -1,20 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {setAuthUser} from "../../redux/authSlice";
 import { toast } from 'sonner';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useLoader from "../../hooks/useLoader";
 import { ColorRing } from 'react-loader-spinner'
 
 
 const Login = () => {
+  const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {isLoading, startLoading, stopLoading} = useLoader();
 
   const [formData, setFormData] = useState({username:'', password:'',rememberme:false});
+
+  useEffect(()=> {
+    if(user) {
+      navigate('/');
+    }
+  },[])
+
+  if (user) {
+    return null; 
+  }
+
 
   const handleFormData = (e) => {
     const {name, type, checked} = e.target;

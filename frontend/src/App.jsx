@@ -5,25 +5,26 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import AboutUs from './pages/dashboard/AboutUs';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const browserRouter = createBrowserRouter([
   {
     path: '/',
-    element:<Layout />,
+    element:<ProtectedRoute><Layout /></ProtectedRoute>,
     children:[
       {
         path:'',
-        element: <Dashboard />
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute> 
       },
       {
         path:'about',
-        element: <AboutUs />
+        element: <ProtectedRoute><AboutUs /></ProtectedRoute> 
       }
     ]
   },
   {
     path:'/login',
-    element:<Login />
+    element:<Login/>
   },
   {
     path:'/register',
