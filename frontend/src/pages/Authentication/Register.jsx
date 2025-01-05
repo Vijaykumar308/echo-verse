@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Register = () => {
-    const [formData, setFormData] = useState({username:'', email:'', password:'', isAgreeTermsAndConditions:false});
+    const navigate = useNavigate();
 
+    const [formData, setFormData] = useState({username:'', email:'', password:'', isAgreeTermsAndConditions:false});
     const handleFormData = (e) => {
       const {name, type, checked} = e.target;
       // console.log(name, e.target.value);
@@ -18,6 +19,11 @@ const Register = () => {
         const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
         const response = await axios.post(`${backendBaseUrl}/register`, formData);
         console.log(response);
+
+        if(response.data.success) {
+          navigate('/login');
+          toast.success("Registration Successfully. Please Login..");
+        }
 
       } catch (error) {
         toast.error(error.response.data.message);       
