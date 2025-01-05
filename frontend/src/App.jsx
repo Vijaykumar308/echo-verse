@@ -6,7 +6,6 @@ import Layout from './components/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import AboutUs from './pages/dashboard/AboutUs';
 
-
 const browserRouter = createBrowserRouter([
   {
     path: '/',

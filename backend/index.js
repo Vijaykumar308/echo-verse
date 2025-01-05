@@ -26,7 +26,6 @@ app.use(urlencoded({extended:true}));
 app.use("/api/v1", userRouter);
 
 
-
 app.use(errorMiddleware);
 app.listen(PORT, () => {
     connectDB();

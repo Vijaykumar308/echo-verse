@@ -59,13 +59,13 @@ export const login = catchAsyncError(async(req,res, next) => {
         const userExist = await User.findOne({username}).select("+password");
 
         if(!userExist) {
-            return next(new ErrorHandler("Invalid username or password", 403));
+            return next(new ErrorHandler("Invalid username or password", 400));
         }
 
         const isPasswordMatched = await userExist.comparePassword(password);
 
         if(!isPasswordMatched) {
-            return next(new ErrorHandler("Invalid email or password", 400));
+            return next(new ErrorHandler("Invalid username or password", 400));
         }
 
         sendToken(userExist, 200, "Login Successfully", res);
