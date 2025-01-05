@@ -11,14 +11,13 @@ export const register = catchAsyncError( async(req, res, next) => {
             return next(new ErrorHandler("All fields are required", 400));
         }
 
-        const existingUser = User.findOne({
+        const existingUser = await User.findOne({
             $or:[
                 { username },
                 { email  }
             ]
-        });
+        }).select("+password");
 
-        
         if(existingUser) {
             return next(new ErrorHandler(`username or email Already Exist`, 400));
         }
@@ -32,11 +31,12 @@ export const register = catchAsyncError( async(req, res, next) => {
    
         const user = await User.create(userData);
         let userCreated = await user.save(); 
-
+        const userWithoutPassword = userCreated.toObject();
+        delete userWithoutPassword.password;
         if(userCreated) {
             return res.status(201).json({
                 success:true,
-                user:userCreated,
+                user:userWithoutPassword,
             })
         }
         else {

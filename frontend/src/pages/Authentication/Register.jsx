@@ -1,6 +1,29 @@
+import axios from "axios";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "sonner";
 
 const Register = () => {
+    const [formData, setFormData] = useState({username:'', email:'', password:'', isAgreeTermsAndConditions:false});
+
+    const handleFormData = (e) => {
+      const {name, type, checked} = e.target;
+      // console.log(name, e.target.value);
+      setFormData({...formData, [name]: type === "checkbox" ? checked : e.target.value});
+    }
+
+    const handleSignupSubmit = async(e) => {
+      e.preventDefault();
+      try {
+        const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
+        const response = await axios.post(`${backendBaseUrl}/register`, formData);
+        console.log(response);
+
+      } catch (error) {
+        toast.error(error.response.data.message);       
+      }
+    }
+
     return (
     <div className="h-screen w-full">
       <div className="flex p-28 bg-gray-100">
@@ -18,13 +41,16 @@ const Register = () => {
         <div className="flex-1 flex justify-center items-center">
           <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold mb-6 text-center">Create your account</h2>
-            <form>
+            <form onSubmit={handleSignupSubmit}>
               <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
                 <input
                   type="text"
-                  id="name"
-                  placeholder="Enter your name"
+                  id="username"
+                  placeholder="Enter your username"
+                  name="username"
+                  onChange={handleFormData}
+                  value={formData.username}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
@@ -34,7 +60,10 @@ const Register = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   placeholder="Enter your email"
+                  onChange={handleFormData}
+                  value={formData.email}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
@@ -44,7 +73,10 @@ const Register = () => {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   placeholder="Enter your password"
+                  onChange={handleFormData}
+                  value={formData.password}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
@@ -53,6 +85,9 @@ const Register = () => {
                 <label className="flex items-center text-sm">
                   <input
                     type="checkbox"
+                    name="isAgreeTermsAndConditions"
+                    onChange={handleFormData}
+                    checked={formData.isAgreeTermsAndConditions}
                     className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
                   <span className="ml-2">
