@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaHome, FaPlusCircle, FaShareAlt, FaUserCircle, FaCogs } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
