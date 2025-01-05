@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaHome, FaPlusCircle, FaShareAlt, FaUserCircle, FaCogs } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import { setAuthUser } from '../../redux/authSlice';
 function Sidebar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const handleLogout = async() => {
     try {
       const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -25,39 +26,56 @@ function Sidebar() {
     } catch (error) {
       console.log(error);
     }
-
-
   }
+
   return (
     <aside className="w-[16%] bg-gray-50 border-r flex flex-col justify-between fixed min-h-screen">
     <div>
       <h1 className="text-2xl font-bold my-10 text-center">Echo Verse</h1>
       <nav className='p-1'>
-        <ul className="space-y-6">
-          <li className="flex text-lg px-6 py-2 rounded-sm  items-center space-x-4 hover:text-blue-500 hover:bg-slate-300 cursor-pointer">
-            <FaHome size={22} />
-            <span>Home</span>
-          </li>
-          <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
-            <FaPlusCircle size={20} />
-            <span>Create</span>
-          </li>
-          <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
-            <FaShareAlt size={20} />
-            <span>Shared Posts</span>
-          </li>
-          <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
-            <FaUserCircle size={22} />
-            <span>My Posts</span>
-          </li>
-          <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
-            <FaUserCircle size={22} />
-            <span>Profile</span>
-          </li>
-          <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
-            <FaCogs size={22} />
-            <span>Settings</span>
-          </li>
+        <ul className="space-y-3">
+
+          <NavLink to="/" className="block">
+            <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300 cursor-pointer">
+              <FaHome size={20} />
+              <span>Home</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/about" className="block">
+            <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
+              <FaPlusCircle size={16} />
+              <span>Create</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/share-post" className="block">
+            <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
+              <FaShareAlt size={16} />
+              <span>Shared Posts</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/mypost" className="block">
+            <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
+              <FaUserCircle size={18} />
+              <span>My Posts</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/profile/:id" className="block">
+            <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
+              <FaUserCircle size={18} />
+              <span>Profile</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/settings" className="block">
+            <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
+              <FaCogs size={20} />
+              <span>Settings</span>
+            </li>
+          </NavLink>
         </ul>
       </nav>
     </div>

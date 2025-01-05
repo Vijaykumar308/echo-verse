@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PostCard from '../../components/PostCard'
 import TopHeader from '../../components/TopHeader';
 import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
+import { Outlet } from 'react-router-dom';
 
 
 function Dashboard() {
@@ -28,7 +29,7 @@ function Dashboard() {
        
     },[]);
     return (
-        <main className="px-6 ml-[16%] mr-[20%]">
+        <main className="px-4">
             <TopHeader headerName="Verse" tagline="The world is here" />
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
               {  isLoading && 
@@ -48,3 +49,6 @@ function Dashboard() {
 }
 
 export default Dashboard
+
+
+{/*  */}
