@@ -1,10 +1,23 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Register = () => {
     const navigate = useNavigate();
+    const {user} = useSelector(store => store.user);
+
+    useEffect(()=> {
+      if(user) {
+        navigate('/');
+      }
+    },[])
+  
+    if (user) {
+      return null; 
+    }
+    
 
     const [formData, setFormData] = useState({username:'', email:'', password:'', isAgreeTermsAndConditions:false});
     const handleFormData = (e) => {

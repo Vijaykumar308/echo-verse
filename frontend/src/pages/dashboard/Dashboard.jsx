@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react'
 import PostCard from '../../components/PostCard'
 import TopHeader from '../../components/TopHeader';
 import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
-import { useNavigate } from 'react-router-dom';
-
 
 function Dashboard() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading]= useState(false);
-    const navigate = useNavigate();
 
     const getData = async() => {
         try{
