@@ -42,7 +42,7 @@ function Sidebar() {
             </li>
           </NavLink>
 
-          <NavLink to="/about" className="block">
+          <NavLink to="/create-post" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
               <FaPlusCircle size={16} />
               <span>Create</span>

@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import AboutUs from './pages/dashboard/AboutUs';
 import ProtectedRoute from './components/ProtectedRoute';
+import CreatePost from './pages/Posts/CreatePost';
 
 const browserRouter = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ const browserRouter = createBrowserRouter([
         element: <ProtectedRoute><Dashboard /></ProtectedRoute> 
       },
       {
-        path:'about',
-        element: <ProtectedRoute><AboutUs /></ProtectedRoute> 
+        path:'create-post',
+        element: <ProtectedRoute><CreatePost /></ProtectedRoute> 
       }
     ]
   },
