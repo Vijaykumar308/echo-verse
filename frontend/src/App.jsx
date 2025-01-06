@@ -8,6 +8,7 @@ import AboutUs from './pages/dashboard/AboutUs';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreatePost from './pages/Posts/CreatePost';
 import MyPost from './pages/Posts/MyPost';
+import Tabs from './components/Tabs';
 
 const browserRouter = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const browserRouter = createBrowserRouter([
       },
       {
         path:'share-post',
-        element: <ProtectedRoute><AboutUs /></ProtectedRoute> 
+        element: <ProtectedRoute><Tabs /></ProtectedRoute> 
       },
       {
         path:'mypost', 

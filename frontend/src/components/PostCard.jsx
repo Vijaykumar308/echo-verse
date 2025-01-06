@@ -22,7 +22,7 @@ function PostCard({item}) {
        </div>
        <div className="p-4">
          <p className="text-gray-700 mb-4">
-           {item.body}
+           {item?.body}
          </p>
          {/* <div className="h-40 bg-gray-200 rounded-lg"></div> */}
        </div>
@@ -30,15 +30,15 @@ function PostCard({item}) {
          <div className="flex space-x-4">
            <button className="flex items-center text-gray-600 hover:text-red-500">
              <CiHeart size={24} className="mr-1" />
-             <span>{item.reactions.likes}</span>
+             <span>{item?.reactions?.likes}</span>
            </button>
            <button className="flex items-center text-gray-600 hover:text-blue-500">
              <CiShare2 size={19} className="mr-1" />
-             <span>{item.views}</span>
+             <span>{item?.views}</span>
            </button>
            <button className="flex items-center text-gray-600 hover:text-yellow-500">
              <CiBookmark size={20} className="mr-1" />
-             <span>{item.reactions.dislikes}</span>
+             <span>{item?.reactions?.dislikes}</span>
            </button>
          </div>
          <span className="text-sm text-gray-500">Aug 30, 2025</span>

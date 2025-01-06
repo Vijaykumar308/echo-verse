@@ -27,21 +27,23 @@ function Dashboard() {
     },[]);
 
     return (
-        <main className="px-4">
+        <>
             <TopHeader headerName="Stream" tagline="A continuous flow of thoughts and ideas" />
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
-              {  isLoading && 
-                 Array.from({ length: 10 }).map((_, index) => {
-                    return <CardSkleton key={index} />
-                })
-              }
-                {
-                    data.map((item, index) => {
-                        return <PostCard key={index} item={item} />
+            <main className='mt-24'>
+                <div className='px-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
+                {  isLoading && 
+                    Array.from({ length: 10 }).map((_, index) => {
+                        return <CardSkleton key={index} />
                     })
                 }
-            </div>
-        </main>
+                    {
+                        data.map((item, index) => {
+                            return <PostCard key={index} item={item} />
+                        })
+                    }
+                </div>
+            </main>
+        </>
                
   )
 }
