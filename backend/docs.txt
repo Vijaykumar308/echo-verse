@@ -2,3 +2,31 @@ mongodb username: 308vijaykumar
 mongodb db pass: Hvo7PWrfVa5ohq3D
 
 mongodb+srv://echoverse:echoverse@cluster0.fd2hv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+
+
+1. Shared By Me (Your Posts)
+My Contributions – A personal space for everything you’ve contributed or shared.
+My Moments – Your own shared thoughts, photos, and updates.
+What I’ve Shared – Direct and to the point, showing the content you’ve put out.
+My Stories – If the content is more narrative-based, this adds a storytelling element.
+My Echoes – Reflecting your voice, as you share your thoughts and ideas.
+My Voice – A space dedicated to expressing your voice and ideas with the world.
+My Legacy – A more personal touch, reflecting the content you've shared over time.
+Self Share – A direct, simple title that focuses on your personal content.
+My Feed – A curated list of everything you’ve shared, similar to a personal feed.
+Posted By Me – A straightforward way to label the content you’ve shared.
+
+
+2. Shared By Others (Others' Posts)
+Discoveries – Content shared by others that you might discover and interact with.
+Community Shares – Content contributed by the broader community.
+Voices of Others – Posts and content shared by others, emphasizing their unique voices.
+Shared Stories – Highlights the idea of others sharing their own stories or experiences.
+Trends – Focuses on shared content that’s gaining popularity or going viral.
+Echoes of Others – Content shared by others that resonate with you or the community.
+Explorations – A space to explore what others are sharing and engaging with.
+Connections – Content shared by people you’re connected with or in the app community.
+The Feed – A simple but effective way to categorize others’ shared content, often resembling a global or social feed.
+Outside Voices – A space where you can hear from others and explore new perspectives.

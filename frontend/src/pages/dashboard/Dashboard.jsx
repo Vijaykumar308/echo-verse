@@ -28,7 +28,7 @@ function Dashboard() {
 
     return (
         <main className="px-4">
-            <TopHeader headerName="Verse" tagline="The world is here" />
+            <TopHeader headerName="Stream" tagline="A continuous flow of thoughts and ideas" />
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
               {  isLoading && 
                  Array.from({ length: 10 }).map((_, index) => {

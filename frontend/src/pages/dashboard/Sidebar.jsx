@@ -38,28 +38,28 @@ function Sidebar() {
           <NavLink to="/" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300 cursor-pointer">
               <FaHome size={20} />
-              <span>Home</span>
+              <span>Stream</span>
             </li>
           </NavLink>
 
           <NavLink to="/create-post" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
               <FaPlusCircle size={16} />
-              <span>Create</span>
+              <span>Express</span>
             </li>
           </NavLink>
 
           <NavLink to="/share-post" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
               <FaShareAlt size={16} />
-              <span>Shared Posts</span>
+              <span>Echoes</span>
             </li>
           </NavLink>
 
           <NavLink to="/mypost" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
               <FaUserCircle size={18} />
-              <span>My Posts</span>
+              <span>Gallery</span>
             </li>
           </NavLink>
 
@@ -73,7 +73,7 @@ function Sidebar() {
           <NavLink to="/settings" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
               <FaCogs size={20} />
-              <span>Settings</span>
+              <span>Control</span>
             </li>
           </NavLink>
         </ul>

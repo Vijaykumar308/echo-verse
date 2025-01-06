@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai'; 
 import { FiEdit, FiChevronDown } from 'react-icons/fi'; 
 import TopHeader from '../../components/TopHeader';
-
+import Select from "react-select";
+import { categoryOptions } from './postCategories';
+ 
 function CreatePost() {
   // Local state to manage form inputs
   const [formData, setFormData] = useState({
@@ -20,6 +22,14 @@ function CreatePost() {
     });
   };
 
+  const handleSelectChange = (selectedOption) => {
+    setFormData({
+      ...formData,
+      category: selectedOption.value,
+      otherCategory: selectedOption.value === 'other' ? '' : formData.otherCategory,
+    });
+  };
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +39,7 @@ function CreatePost() {
 
   return (
     <>
-    <TopHeader headerName="Create Post" tagline="Write Your thoughts..."></TopHeader>
+    <TopHeader headerName="Post" tagline="For sharing what’s on your mind, whether text or anything creative"></TopHeader>
     <div className="lg:max-w-4xl md:max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
         <FiEdit className="mr-2 text-blue-500" /> Create a New Post
@@ -59,20 +69,13 @@ function CreatePost() {
           <label className="block text-gray-600 mb-2 font-medium" htmlFor="category">Post Category</label>
           <div className="flex sm:flex-col md:flex-row md:space-x-4">
             <div className="relative flex-1">
-              <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="appearance-none w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              >
-                <option value="">Select a category</option>
-                <option value="technology">Technology</option>
-                <option value="business">Business</option>
-                <option value="lifestyle">Lifestyle</option>
-                <option value="other">Other</option>
-              </select>
+                <Select
+                    id="category"
+                    options={categoryOptions}
+                    onChange={handleSelectChange}
+                    placeholder="Select a category"
+                    className="rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500"
+                />
               <FiChevronDown className="absolute top-3 right-3 text-gray-400" />
             </div>
 
