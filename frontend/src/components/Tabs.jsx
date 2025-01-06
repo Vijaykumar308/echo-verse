@@ -22,7 +22,7 @@ function Tabs() {
     <>
         <TopHeader headerName='Echos'  tagline='Content shared by others that resonate with you or the community' />   
         <div className='mt-20'>
-            <div className="flex space-x-4 border-b pt-3 bg-white fixed w-full">
+            <div className="flex space-x-4 border-b-2 py-3 bg-white fixed w-full">
             <button
                 className={`py-2 px-4 ${activeTab === 'sharedByMe' ? 'border-b-2 border-blue-500 text-blue-500' : ''}`}
                 onClick={() => setActiveTab('sharedByMe')}
@@ -42,7 +42,7 @@ function Tabs() {
                 My Posts
             </button>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 bg-slate-100">
                 {renderContent()}
             </div>
         </div>
