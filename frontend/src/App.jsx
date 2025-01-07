@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import CreatePost from './pages/Posts/CreatePost';
 import MyPost from './pages/Posts/MyPost';
 import Tabs from './components/Tabs';
+import PageNotFound from './pages/services/PageNotFound';
 
 const browserRouter = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const browserRouter = createBrowserRouter([
         element: <ProtectedRoute><MyPost /></ProtectedRoute> 
       }
     ]
+  },
+  {
+    path:'*',
+    element:<PageNotFound />
   },
   {
     path:'/login',
