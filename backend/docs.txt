@@ -3,7 +3,7 @@ mongodb db pass: Hvo7PWrfVa5ohq3D
 
 mongodb+srv://echoverse:echoverse@cluster0.fd2hv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
-1. Post Model APIs
+1. Post Model APIs 
 2. Post Sharing Model APIs
 
 
