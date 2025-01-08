@@ -20,7 +20,7 @@ function Tabs() {
 
   return (
     <>
-        <TopHeader headerName='Echos'  tagline='Content shared by others that resonate with you or the community' />   
+        <TopHeader headerName='Echos' tagline='Content shared by others that resonate with you or the community' />   
         <div className='mt-20'>
             <div className="flex space-x-4 border-b-2 py-3 bg-white fixed w-full">
             <button
