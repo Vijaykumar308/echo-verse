@@ -7,7 +7,7 @@ const item = {
 
 function Grid({ content }) {
   return (
-    <div className="px-3 py-20 grid grid-cols-3 gap-6 mb-10">
+    <div className="px-3 py-20 grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-10">
       {[...Array(12)].map((_, index) => (
         // <div key={index} className="w-full h-32 bg-gray-200 flex items-center justify-center">
           <PostCard item={item}/>

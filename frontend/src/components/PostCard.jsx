@@ -7,7 +7,7 @@ import { IoMdPersonAdd } from 'react-icons/io';
 function PostCard({item}) {
   return (
    <div className="max-w-md bg-white border rounded-lg shadow-md overflow-hidden">
-       <div className="p-4 flex items-center justify-between">
+       <div className="p-4 flex items-center justify-between lg:flex-row md:flex-col md:items-start md:gap-3 bg-red-100">
          <div className="flex items-center">
            <img
              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJpXG8YdajWVxuHjLGVOnwphn1iQ3ahvMe2Q&s"
@@ -16,7 +16,7 @@ function PostCard({item}) {
            />
            <span className="ml-4 font-semibold">@vijaykumar308</span>
          </div>
-         <button className="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600">
+         <button className="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600 md:self-end">
          <IoMdPersonAdd size={18}/>
          </button>
        </div>
