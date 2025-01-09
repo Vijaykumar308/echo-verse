@@ -29,12 +29,11 @@ function Sidebar() {
   }
 
   return (
-    <aside className="w-[16%] bg-gray-50 border-r flex flex-col justify-between fixed min-h-screen">
+    <>
     <div>
-      <h1 className="text-2xl font-bold my-10 text-center">Echo Verse</h1>
-      <nav className='p-1'>
+      <h1 className="hidden sm:block text-2xl font-bold my-10 text-center">Echo Verse</h1>
+      <nav className='sm:p-1'>
         <ul className="space-y-3">
-
           <NavLink to="/" className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300 cursor-pointer">
               <FaHome size={20} />
@@ -86,7 +85,7 @@ function Sidebar() {
         <span>Logout</span>
       </button>
     </div>
-  </aside>
+  </>
   )
 }
 

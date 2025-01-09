@@ -4,7 +4,6 @@ import Login from './pages/authentication/Login'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
-import AboutUs from './pages/dashboard/AboutUs';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreatePost from './pages/Posts/CreatePost';
 import MyPost from './pages/Posts/MyPost';
