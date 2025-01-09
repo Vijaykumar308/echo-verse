@@ -10,7 +10,7 @@ function Layout() {
       <aside className="md:fixed sm:min-h-screen sm:w-44 lg:w-52 bg-gray-50 border-r flex flex-col justify-between">
         <Sidebar />
       </aside>
-      <div className='flex-1 ml-[16%] mr-[20%]'>
+      <div className='flex-1 md:ml-[17%] md:mr-[20%]'>
         <Outlet />
       </div>
 
