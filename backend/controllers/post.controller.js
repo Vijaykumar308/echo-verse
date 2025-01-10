@@ -5,6 +5,7 @@ import { isEmptyString } from "../utils/utilisFunc.js";
 import {Post} from "../models/post.model.js";
 import {Category} from "../models/category.model.js";
 import { OTHER } from "../utils/constants.js";
+import mongoose from "mongoose";
 
 export const createPost = catchAsyncError(async(req, res, next) => {
     try {
@@ -49,3 +50,24 @@ export const createPost = catchAsyncError(async(req, res, next) => {
         return next(new ErrorHandler("Post Something went wrong", error));
     }
 }); 
+
+export const getLoggedInUserAllPost = catchAsyncError(async(req, res, next) => {
+    try {
+        const userId = new mongoose.Types.ObjectId(req.userId);
+
+        const posts = await Post.find({author_id:userId}).select("-author_id");
+        console.log('posts: ', posts);
+        if(!posts) {
+            return next(new ErrorHandler("Post Not Found", 404));
+        }
+
+        return res.status(200).json({
+            statusCode:200,
+            success:true,
+            posts
+        });
+
+    } catch (error) {
+        return next(new ErrorHandler(error, 500));
+    }
+})
