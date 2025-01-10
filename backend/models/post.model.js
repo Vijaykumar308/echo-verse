@@ -13,6 +13,11 @@ const postSchema = new mongoose.Schema({
 
     other_category:String,
 
+    content: {
+        type:String,
+        reqired:[true, "Content is required"]
+    },
+
     author_id: {
        type:mongoose.Schema.Types.ObjectId,
        ref:"User",
