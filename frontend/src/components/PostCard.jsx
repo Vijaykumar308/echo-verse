@@ -6,7 +6,7 @@ import { IoMdPersonAdd } from 'react-icons/io';
 
 function PostCard({item}) {
   return (
-   <div className="max-w-md bg-white border rounded-lg shadow-md overflow-hidden">
+    <div className="max-w-md bg-white border rounded-lg shadow-md overflow-hidden">
        <div className="p-4 flex items-center justify-between lg:flex-row md:flex-col md:items-start md:gap-3">
          <div className="flex items-center">
            <img
@@ -43,7 +43,7 @@ function PostCard({item}) {
          </div>
          <span className="text-sm text-gray-500">Aug 30, 2025</span>
        </div>
-     </div>
+    </div>
   )
 }
 

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai'; 
 import { FiEdit, FiChevronDown } from 'react-icons/fi'; 
 import TopHeader from '../../components/TopHeader';
 import Select from "react-select";
 import { categoryOptions } from './postCategories';
+import useAuthenticated from '../../hooks/useAuthenticated';
+import { useNavigate } from 'react-router-dom';
  
 function CreatePost() {
   // Local state to manage form inputs
@@ -12,6 +14,14 @@ function CreatePost() {
     category: '',
     description: '',
   });
+  const navigate = useNavigate();
+
+  const {token, _} = useAuthenticated();
+  useEffect(() => {
+    if(!token) {
+      navigate('/login');
+    }
+  },[token]);
 
   // Handle input changes
   const handleChange = (e) => {

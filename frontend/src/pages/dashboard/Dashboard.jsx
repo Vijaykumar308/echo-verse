@@ -11,6 +11,7 @@ function Dashboard() {
         try{
             setIsLoading(true);
             const resp = await fetch("https://dummyjson.com/posts");
+            // const resp = await fetch("https://dummyjson.com/posts");
             const actualData = await resp.json();
             setData(actualData.posts)
         }

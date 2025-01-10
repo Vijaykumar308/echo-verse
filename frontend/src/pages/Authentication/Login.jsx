@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import useLoader from "../../hooks/useLoader";
 import { ColorRing } from 'react-loader-spinner'
+import useAuthenticated from "../../hooks/useAuthenticated";
 
 
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
       navigate('/');
     }
   },[])
+
 
   if (user) {
     return null; 
@@ -39,7 +41,8 @@ const Login = () => {
       startLoading();
       const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
       const response = await axios.post(`${backendBaseUrl}/login`, formData);
-      
+      console.log(response);
+      setToken(response.data.token);
       if(response.data.success) {
         dispatch(setAuthUser(response.data.user));
         toast.success(response.data.message);

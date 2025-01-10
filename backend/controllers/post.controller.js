@@ -51,12 +51,34 @@ export const createPost = catchAsyncError(async(req, res, next) => {
     }
 }); 
 
+
 export const getLoggedInUserAllPost = catchAsyncError(async(req, res, next) => {
     try {
         const userId = new mongoose.Types.ObjectId(req.userId);
 
         const posts = await Post.find({author_id:userId}).select("-author_id");
-        console.log('posts: ', posts);
+
+        if(!posts) {
+            return next(new ErrorHandler("Post Not Found", 404));
+        }
+
+        return res.status(200).json({
+            statusCode:200,
+            success:true,
+            posts
+        });
+
+    } catch (error) {
+        return next(new ErrorHandler(error, 500));
+    }
+})
+
+
+export const getAllPostExceptLoggedInUser = catchAsyncError(async(req, res, next) => {
+    try {
+        const userId = new mongoose.Types.ObjectId(req.userId);
+
+        const posts = await Post.find({$nor:[{author_id:userId}]}).select("-author_id");
         if(!posts) {
             return next(new ErrorHandler("Post Not Found", 404));
         }
