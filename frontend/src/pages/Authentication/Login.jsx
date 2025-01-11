@@ -9,13 +9,12 @@ import useLoader from "../../hooks/useLoader";
 import { ColorRing } from 'react-loader-spinner'
 import useAuthenticated from "../../hooks/useAuthenticated";
 
-
 const Login = () => {
   const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {isLoading, startLoading, stopLoading} = useLoader();
-
+  const {token, setToken} = useAuthenticated();
   const [formData, setFormData] = useState({username:'', password:'',rememberme:false});
 
   useEffect(()=> {

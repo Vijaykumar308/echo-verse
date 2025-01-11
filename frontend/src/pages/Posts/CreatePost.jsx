@@ -5,24 +5,21 @@ import TopHeader from '../../components/TopHeader';
 import Select from "react-select";
 import { categoryOptions } from './postCategories';
 import useAuthenticated from '../../hooks/useAuthenticated';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import useToken from '../../hooks/useToken';
+import { toast } from 'sonner';
  
 function CreatePost() {
   // Local state to manage form inputs
   const [formData, setFormData] = useState({
     title: '',
     category: '',
-    description: '',
+    content: '',
   });
+
+  const token = useToken();
   const navigate = useNavigate();
-
-  const {token, _} = useAuthenticated();
-  useEffect(() => {
-    if(!token) {
-      navigate('/login');
-    }
-  },[token]);
-
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,10 +38,25 @@ function CreatePost() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
-    // Add your submission logic here (e.g., API call)
+   try {
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/create-post`, formData,  {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    console.log(response);
+    if(response?.data?.success) {
+      toast.success(response.data.message);
+      navigate('/');
+    }
+
+   } catch (error) {
+    console.log(error);
+    toast.error(error.response.data.message);
+   }
   };
 
   return (
@@ -107,16 +119,16 @@ function CreatePost() {
             </div>
           </div>
 
-          {/* Post Descriptions */}
+          {/* Post contents */}
           <div className="mb-6">
-            <label className="block text-gray-600 mb-2 font-medium" htmlFor="description">Post Descriptions</label>
+            <label className="block text-gray-600 mb-2 font-medium" htmlFor="content">Post contents</label>
             <textarea
-              id="description"
-              name="description"
-              value={formData.description}
+              id="content"
+              name="content"
+              value={formData.content}
               onChange={handleChange}
               className="w-full h-32 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter post description"
+              placeholder="Enter post content"
               required
             />
           </div>

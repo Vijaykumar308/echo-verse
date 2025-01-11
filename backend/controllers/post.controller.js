@@ -12,7 +12,7 @@ export const createPost = catchAsyncError(async(req, res, next) => {
         const {title, category, otherCategory, content} = req.body; 
 
         if(isEmptyString(title) || isEmptyString(category) || isEmptyString(content) || (category.trim().toLowerCase() === OTHER && isEmptyString(otherCategory))) {
-            return next(new ErrorHandler("All Fields are mendatory", 400));
+            return next(new ErrorHandler("All Fields are mendatory......", 400));
         }
 
         const postData = {
@@ -28,6 +28,8 @@ export const createPost = catchAsyncError(async(req, res, next) => {
 
         if(category.trim().toLowerCase() != OTHER) {
             return res.status(201).json({
+                success:true,
+                message:"Post Created Successfully",
                 post
             }); 
         }
@@ -51,7 +53,6 @@ export const createPost = catchAsyncError(async(req, res, next) => {
     }
 }); 
 
-
 export const getLoggedInUserAllPost = catchAsyncError(async(req, res, next) => {
     try {
         const userId = new mongoose.Types.ObjectId(req.userId);
@@ -72,7 +73,6 @@ export const getLoggedInUserAllPost = catchAsyncError(async(req, res, next) => {
         return next(new ErrorHandler(error, 500));
     }
 })
-
 
 export const getAllPostExceptLoggedInUser = catchAsyncError(async(req, res, next) => {
     try {
