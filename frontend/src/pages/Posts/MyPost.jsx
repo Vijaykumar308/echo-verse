@@ -14,15 +14,18 @@ function MyPost() {
   const getPost = async() => {
     try {
       setIsLoading(true);
+      
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/getLoggedInUserAllPost`, {
         headers:{
           "Authorization": token,
         }
       });
+
       return response;
       
     } catch (error) {
-      console.log('error'); 
+      console.log('error');
+      return error; 
     }
     finally{
       setIsLoading(false);
@@ -34,7 +37,6 @@ function MyPost() {
   useEffect(() => {
     getPost()
     .then((data) => {
-      // console.log(data.data.posts);
       setPosts(data.data.posts)
     });
   }, []) 
