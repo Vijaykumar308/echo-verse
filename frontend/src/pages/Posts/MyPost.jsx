@@ -31,9 +31,7 @@ function MyPost() {
       setIsLoading(false);
     }
   }
-
-  console.log(posts);
-
+  
   useEffect(() => {
     getPost()
     .then((data) => {
