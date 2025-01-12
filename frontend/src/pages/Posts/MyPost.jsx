@@ -34,7 +34,6 @@ function MyPost() {
   useEffect(() => {
     getPost()
     .then((data) => {
-      // console.log(data.data.posts);
       setPosts(data.data.posts)
     });
   }, []) 
@@ -42,18 +41,20 @@ function MyPost() {
   return (
     <>
      <TopHeader headerName="My Posts" tagline="This is my posts" />
-     <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
-        {  isLoading && 
-            Array.from({ length: 10 }).map((_, index) => {
-                return <CardsSkleton key={index} />
-            })
-        }
-            {
-                posts.map((item, index) => {
-                    return <PostCard key={index} item={item} />
-                })
-            }
-      </div>
+     <div className='mt-24'>
+        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
+          {  isLoading && 
+              Array.from({ length: 10 }).map((_, index) => {
+                  return <CardsSkleton key={index} />
+              })
+          }
+              {
+                  posts.map((item, index) => {
+                      return <PostCard key={index} item={item} />
+                  })
+              }
+        </div>
+     </div>
     </>
   )
 }

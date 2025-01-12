@@ -32,11 +32,11 @@ function Dashboard() {
             <TopHeader headerName="Stream" tagline="A continuous flow of thoughts and ideas" />
             <main className='mt-24'>
                 <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
-                {  isLoading && 
-                    Array.from({ length: 10 }).map((_, index) => {
-                        return <CardSkleton key={index} />
-                    })
-                }
+                    {  isLoading && 
+                        Array.from({ length: 10 }).map((_, index) => {
+                            return <CardSkleton key={index} />
+                        })
+                    }
                     {
                         data.map((item, index) => {
                             return <PostCard key={index} item={item} />
