@@ -45,16 +45,19 @@ function MyPost() {
     <>
      <TopHeader headerName="My Posts" tagline="This is my posts" />
      <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
+      
         {  isLoading && 
             Array.from({ length: 10 }).map((_, index) => {
-                return <CardsSkleton key={index} />
+                return <div className='mt-24'><CardsSkleton key={index} /></div>
             })
         }
-            {
+            <div className='mt-24'>
+              {
                 posts.map((item, index) => {
-                    return <PostCard key={index} item={item} />
+                  return <PostCard key={index} item={item} />
                 })
-            }
+              }
+            </div>
       </div>
     </>
   )
