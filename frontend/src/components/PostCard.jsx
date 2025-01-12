@@ -5,6 +5,7 @@ import { CiBookmark } from "react-icons/ci";
 import { IoMdPersonAdd } from 'react-icons/io';
 
 function PostCard({item}) {
+  console.log('this is item:', item);
   return (
     <div className="max-w-md bg-white border rounded-lg shadow-md overflow-hidden">
        <div className="p-4 flex items-center justify-between lg:flex-row md:flex-col md:items-start md:gap-3">
@@ -22,7 +23,8 @@ function PostCard({item}) {
        </div>
        <div className="p-4">
          <p className="text-gray-700 mb-4">
-           {item?.body}
+          Dummy Data 
+           {" " +item?.body}
          </p>
          {/* <div className="h-40 bg-gray-200 rounded-lg"></div> */}
        </div>

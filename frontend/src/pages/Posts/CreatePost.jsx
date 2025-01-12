@@ -43,7 +43,7 @@ function CreatePost() {
    try {
     const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/create-post`, formData,  {
       headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": token
       }
     });
 
