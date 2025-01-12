@@ -9,7 +9,7 @@ import useLoader from "../../hooks/useLoader";
 import { ColorRing } from 'react-loader-spinner'
 import useAuthenticated from "../../hooks/useAuthenticated";
 import useToken from "../../hooks/useToken";
-import {setPosts} from "../../redux//postSlice";
+import {deleteKey, setPosts} from "../../redux//postSlice";
 const Login = () => {
   const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
@@ -54,7 +54,6 @@ const Login = () => {
       startLoading();
       const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
       const response = await axios.post(`${backendBaseUrl}/login`, formData);
-      
       setToken(response.data.token);
 
       if(response.data.success) {
@@ -62,9 +61,7 @@ const Login = () => {
 
         const posts = await getPosts();
         dispatch(setPosts(posts.data.posts));
-
-        console.log('posts: ',posts.data.posts);
-
+        
         toast.success("LoggedIn Successfully")
         navigate('/');
       }

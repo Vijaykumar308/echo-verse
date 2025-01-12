@@ -57,9 +57,30 @@ export const getLoggedInUserAllPost = catchAsyncError(async(req, res, next) => {
     try {
         const userId = new mongoose.Types.ObjectId(req.userId);
 
-        const posts = await Post.find({author_id:userId}).select("-author_id");
+        const posts = await Post.aggregate([
+            {
+              $match: { author_id: userId }  
+            },
+            {
+              $lookup: {
+                from: "users",              
+                localField: "author_id",    
+                foreignField: "_id",        
+                as: "authorDetails"         
+              }
+            },
+            {
+              $unwind: "$authorDetails"      
+            },
+            {
+              $project: {
+                "authorDetails.password": 0,  
+                "author_id": 0          
+              }
+            }
+        ]);
 
-        if(!posts) {
+        if(!posts || posts.length === 0) {
             return next(new ErrorHandler("Post Not Found", 404));
         }
 
