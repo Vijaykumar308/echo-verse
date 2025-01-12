@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import { setAuthUser } from '../../redux/authSlice';
+import { setPosts } from '../../redux/postSlice';
 
 
 function Sidebar() {
@@ -20,6 +21,7 @@ function Sidebar() {
       if(res.data.success) {
         toast.success(res.data.message);
         dispatch(setAuthUser(null));
+        dispatch(setPosts(null));
         navigate('/login');
       }
 

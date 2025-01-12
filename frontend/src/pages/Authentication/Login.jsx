@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import useLoader from "../../hooks/useLoader";
 import { ColorRing } from 'react-loader-spinner'
 import useAuthenticated from "../../hooks/useAuthenticated";
-
+import useToken from "../../hooks/useToken";
+import {deleteKey, setPosts} from "../../redux//postSlice";
 const Login = () => {
   const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Login = () => {
   const {isLoading, startLoading, stopLoading} = useLoader();
   const {token, setToken} = useAuthenticated();
   const [formData, setFormData] = useState({username:'', password:'',rememberme:false});
+  const authToken = useToken();
 
   useEffect(()=> {
     if(user) {
@@ -33,17 +35,34 @@ const Login = () => {
     setFormData({...formData, [name]: type ==='checkbox' ? checked : e.target.value});
   }
 
+  const getPosts = async() => {
+    try {
+      const postRes = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/getLoggedInUserAllPost`, {
+        headers:{
+          "Authorization":authToken
+        }
+      });
+      return postRes;
+    } catch (error) {
+      console.log('error while getting post', error);
+    }
+  }
+
   const handleLogin = async(e) => {
     e.preventDefault();
     try {
       startLoading();
       const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
       const response = await axios.post(`${backendBaseUrl}/login`, formData);
-      console.log(response);
       setToken(response.data.token);
+
       if(response.data.success) {
         dispatch(setAuthUser(response.data.user));
-        toast.success(response.data.message);
+
+        const posts = await getPosts();
+        dispatch(setPosts(posts.data.posts));
+        
+        toast.success("LoggedIn Successfully")
         navigate('/');
       }
     } catch (error) {
