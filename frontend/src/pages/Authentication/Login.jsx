@@ -4,74 +4,72 @@ import axios from "axios";
 import {setAuthUser} from "../../redux/authSlice";
 import { toast } from 'sonner';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useLoader from "../../hooks/useLoader";
 import { ColorRing } from 'react-loader-spinner'
 import useAuthenticated from "../../hooks/useAuthenticated";
-import useToken from "../../hooks/useToken";
-import {deleteKey, setPosts} from "../../redux//postSlice";
+
+import { setPosts } from "../../redux//postSlice";
 const Login = () => {
-  const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {isLoading, startLoading, stopLoading} = useLoader();
-  const {token, setToken} = useAuthenticated();
+  const [authToken, setAuthToken] = useAuthenticated();
   const [formData, setFormData] = useState({username:'', password:'',rememberme:false});
-  const authToken = useToken();
-
+  
   useEffect(()=> {
-    if(user) {
+    if(authToken) {
       navigate('/');
     }
   },[])
 
-
-  if (user) {
-    return null; 
-  }
-  
   const handleFormData = (e) => {
     const {name, type, checked} = e.target;
     setFormData({...formData, [name]: type ==='checkbox' ? checked : e.target.value});
   }
 
-  const getPosts = async() => {
+  const getPosts = async(token) => {
     try {
       const postRes = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/getLoggedInUserAllPost`, {
-        headers:{
-          "Authorization":authToken
+        headers: {
+          "Authorization": `Bearer ${token}`
         }
       });
       return postRes;
     } catch (error) {
-      console.log('error while getting post', error);
+      console.error('Error while getting posts', error);
+      toast.error('Failed to fetch posts. Please try again.');
     }
   }
 
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       startLoading();
       const backendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
       const response = await axios.post(`${backendBaseUrl}/login`, formData);
-      setToken(response.data.token);
-
-      if(response.data.success) {
+  
+      const token = response?.data?.token;
+      if (token) {
+        setAuthToken(token);
         dispatch(setAuthUser(response.data.user));
-
-        const posts = await getPosts();
-        dispatch(setPosts(posts.data.posts));
         
-        toast.success("LoggedIn Successfully")
+        const posts = await getPosts(token);
+        if (posts) {
+          dispatch(setPosts(posts.data.posts));
+        }
+  
+        toast.success("LoggedIn Successfully");
         navigate('/');
       }
     } catch (error) {
-      toast.error(error.response.data.message);
-    }
-    finally{
+      console.error('Login error', error);
+      toast.error(error.response?.data?.message || 'Login failed. Please try again.');
+    } finally {
       stopLoading();
     }
-  }
+  };
+  
 
   return (
     <div className="h-screen">

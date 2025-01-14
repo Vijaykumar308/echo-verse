@@ -13,7 +13,11 @@ function useAuthenticated() {
     }
   }, [token]);
 
-  return { token, setToken };
+  const setAuthToken = (newToken) => {
+    setToken(newToken);
+  };
+
+  return [token, setAuthToken];
 }
 
 export default useAuthenticated;

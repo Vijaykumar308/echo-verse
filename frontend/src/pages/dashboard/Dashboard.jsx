@@ -2,10 +2,21 @@ import React, { useEffect, useState } from 'react'
 import PostCard from '../../components/PostCard'
 import TopHeader from '../../components/TopHeader';
 import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
+import useAuthenticated from '../../hooks/useAuthenticated';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading]= useState(false);
+
+    const [token, setAuthToken] = useAuthenticated();
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if(!token) {
+            navigate('/login');
+        }
+    }, [token])
 
     const getData = async() => {
         try{
