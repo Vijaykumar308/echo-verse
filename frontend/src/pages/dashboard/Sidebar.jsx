@@ -4,7 +4,7 @@ import { BiLogOut } from "react-icons/bi";
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAuthUser } from '../../redux/authSlice';
 import { setPosts } from '../../redux/postSlice';
 
@@ -12,6 +12,10 @@ import { setPosts } from '../../redux/postSlice';
 function Sidebar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const {user} = useSelector(store => store.user);
+
+  // console.log('username:',user.username);
   
   const handleLogout = async() => {
     try {
@@ -22,6 +26,7 @@ function Sidebar() {
         toast.success(res.data.message);
         dispatch(setAuthUser(null));
         dispatch(setPosts(null));
+        sessionStorage.removeItem('token');
         navigate('/login');
       }
 
