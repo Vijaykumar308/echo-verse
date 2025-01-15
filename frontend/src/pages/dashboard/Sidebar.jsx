@@ -69,7 +69,7 @@ function Sidebar() {
             </li>
           </NavLink>
 
-          <NavLink to="/profile/:id" className="block">
+          <NavLink to={`/profile/${user.username}`} className="block">
             <li className="flex text-lg px-6 py-2 rounded-sm items-center space-x-4 hover:text-blue-500 hover:bg-slate-300  cursor-pointer">
               <FaUserCircle size={18} />
               <span>Profile</span>
