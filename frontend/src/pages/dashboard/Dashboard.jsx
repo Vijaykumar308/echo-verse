@@ -12,7 +12,7 @@ function Dashboard() {
 
     const [token, setToken] = useToken();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         if(!token) {
             navigate('/login');

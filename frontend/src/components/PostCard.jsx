@@ -6,7 +6,6 @@ import { IoMdPersonAdd } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 
 function PostCard({item}) {
-  console.log('items in postcard: ',item);
   return (
     <div className="max-w-md bg-white border rounded-lg shadow-md overflow-hidden">
        <div className="p-4 flex items-center justify-between lg:flex-row md:flex-col md:items-start md:gap-3">
