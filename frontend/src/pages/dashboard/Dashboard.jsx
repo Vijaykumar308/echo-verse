@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import PostCard from '../../components/PostCard'
 import TopHeader from '../../components/TopHeader';
 import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
-import useAuthenticated from '../../hooks/useAuthenticated';
 import { useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
+import {useSelector} from "react-redux";
 
 function Dashboard() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading]= useState(false);
 
-    const [token, setAuthToken] = useAuthenticated();
+    const [token, setToken] = useToken();
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -22,7 +23,6 @@ function Dashboard() {
         try{
             setIsLoading(true);
             const resp = await fetch("https://dummyjson.com/posts");
-            // const resp = await fetch("https://dummyjson.com/posts");
             const actualData = await resp.json();
             setData(actualData.posts)
         }

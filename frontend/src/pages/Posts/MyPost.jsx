@@ -5,39 +5,11 @@ import axios from 'axios';
 import useToken from "../../hooks/useToken";
 import PostCard from "../../components/PostCard";
 import CardsSkleton from '../../components/SkletonLoader/CardsSkleton';
+import { useSelector } from 'react-redux';
 
-function MyPost() {
-  const [posts, setPosts] = useState([]);
-  const token = useToken();
+function MyPost() {  
   const [isLoading, setIsLoading]= useState(false);
-
-  const getPost = async() => {
-    try {
-      setIsLoading(true);
-      
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/getLoggedInUserAllPost`, {
-        headers:{
-          "Authorization": token,
-        }
-      });
-
-      return response;
-      
-    } catch (error) {
-      console.log('error');
-      return error; 
-    }
-    finally{
-      setIsLoading(false);
-    }
-  }
-  
-  useEffect(() => {
-    getPost()
-    .then((data) => {
-      setPosts(data.data.posts)
-    });
-  }, []) 
+  const {authUserPosts} = useSelector(store => store.posts);
 
   return (
     <>
@@ -45,17 +17,18 @@ function MyPost() {
      <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
       
         {  isLoading && 
-            Array.from({ length: 10 }).map((_, index) => {
-                return <div className='mt-24'><CardsSkleton key={index} /></div>
-            })
+          Array.from({ length: 10 }).map((_,) => {
+            return <div className='mt-24' key={crypto.randomUUID()}><CardsSkleton /></div>
+          })
         }
-            <div className='mt-24'>
-              {
-                posts.map((item, index) => {
-                  return <PostCard key={index} item={item} />
-                })
-              }
-            </div>
+
+        <div className='mt-24'>
+          {
+            authUserPosts.map((post) => {
+              return <PostCard key={crypto.randomUUID()} item={post} />
+            })
+          }
+        </div>
       </div>
     </>
   )
