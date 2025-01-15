@@ -8,21 +8,13 @@ import CardsSkleton from '../../components/SkletonLoader/CardsSkleton';
 import { useSelector } from 'react-redux';
 
 function MyPost() {  
-  const [isLoading, setIsLoading]= useState(false);
   const {authUserPosts} = useSelector(store => store.posts);
 
   return (
     <>
      <TopHeader headerName="My Posts" tagline="This is my posts" />
-     <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
-      
-        {  isLoading && 
-          Array.from({ length: 10 }).map((_,) => {
-            return <div className='mt-24' key={crypto.randomUUID()}><CardsSkleton /></div>
-          })
-        }
-
         <div className='mt-24'>
+          <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5'>
           {
             authUserPosts.map((post) => {
               return <PostCard key={crypto.randomUUID()} item={post} />
