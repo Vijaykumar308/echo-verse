@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import TopHeader from './TopHeader';
 import Grid from './Grid';
+import { useSelector } from 'react-redux';
 
 function Tabs() {
-// props: tabs menus
-
+  const authUserPost = useSelector(store => store.posts);
 
   const tabs = [
-    { id: 'myPosts', label: 'My Posts', content: 'My posts content' },
-    { id: 'sharedByOthers', label: 'Echoes of Others', content: 'Content shared by others' },
-    { id: 'sharedByMe', label: 'What I’ve Shared', content: 'Content shared by me' },
-    { id: 'saved', label: 'Saved', content: 'Content Saved by me' }
+    { id: 'myPosts', label: 'My Posts', content: [{body:authUserPost}] },
+    { id: 'sharedByOthers', label: 'Echoes of Others', content:  'Content shared by others'  },
+    { id: 'sharedByMe', label: 'What I’ve Shared', content:  'Content shared by me'  },
+    { id: 'saved', label: 'Saved', content:  'Content Saved by me'  }
   ];
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -28,7 +28,7 @@ function Tabs() {
         tagline="Content shared by others that resonate with you or the community"
       />
       <div className="mt-20">
-        <div className="flex space-x-4 border-b-2 py-3 bg-white fixed w-full">
+        <div className="flex space-x-4 border-b-2 py-3 bg-white fixed w-[60%]">
           {tabs.map(tab => (
             <button
               key={tab.id}
