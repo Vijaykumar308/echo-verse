@@ -6,15 +6,15 @@ const item = {
 }
 
 function Grid({ content }) {
+  // console.log(content);
   return (
-    <div className="px-3 py-20 grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-10">
-      {content}
-      {/* {[...Array(12)].map((_, index) => (
+    <div className="py-20 grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-10"> 
+      {content?.authUserPosts?.map((item) => (
         // <div key={index} className="w-full h-32 bg-gray-200 flex items-center justify-center">
-          <PostCard item={item}/>
+          <PostCard key={crypto.randomUUID()} item={item}/>
           // {content}
         // </div>
-      ))} */}
+      )) }
     </div>
   );
 }
