@@ -7,10 +7,10 @@ function Tabs() {
   const authUserPost = useSelector(store => store.posts);
 
   const tabs = [
-    { id: 'myPosts', label: 'My Posts', content: authUserPost },
-    { id: 'sharedByOthers', label: 'Echoes of Others', content: 'Content shared by others' },
-    { id: 'sharedByMe', label: 'What I’ve Shared', content: 'Content shared by me' },
-    { id: 'saved', label: 'Saved', content: 'Content Saved by me' }
+    { id: 'myPosts', label: 'My Posts', content: [{body:authUserPost}] },
+    { id: 'sharedByOthers', label: 'Echoes of Others', content:  'Content shared by others'  },
+    { id: 'sharedByMe', label: 'What I’ve Shared', content:  'Content shared by me'  },
+    { id: 'saved', label: 'Saved', content:  'Content Saved by me'  }
   ];
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
