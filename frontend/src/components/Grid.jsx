@@ -7,6 +7,7 @@ function Grid({ content }) {
         <PostCard key={index} item={item} />
       )): content}
     </div>
+    
   );
 }
 
