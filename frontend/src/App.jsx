@@ -9,6 +9,7 @@ import CreatePost from './pages/Posts/CreatePost';
 import MyPost from './pages/Posts/MyPost';
 import Tabs from './components/Tabs';
 import PageNotFound from './pages/services/PageNotFound';
+import EchoPage from './pages/echos/EchoPage';
 
 const browserRouter = createBrowserRouter([
   {
@@ -25,7 +26,8 @@ const browserRouter = createBrowserRouter([
       },
       {
         path:'share-post',
-        element: <ProtectedRoute><Tabs /></ProtectedRoute> 
+        // element: <ProtectedRoute><Tabs /></ProtectedRoute> 
+        element: <ProtectedRoute><EchoPage /></ProtectedRoute> 
       },
       {
         path:'mypost', 
