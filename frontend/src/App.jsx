@@ -10,6 +10,7 @@ import MyPost from './pages/Posts/MyPost';
 import Tabs from './components/Tabs';
 import PageNotFound from './pages/services/PageNotFound';
 import EchoPage from './pages/echos/EchoPage';
+import ProfilePage from './pages/profile/ProfilePage';
 
 const browserRouter = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const browserRouter = createBrowserRouter([
       {
         path:'mypost', 
         element: <ProtectedRoute><MyPost /></ProtectedRoute> 
+      },
+      {
+        path:'profile/:id', 
+        element: <ProtectedRoute><ProfilePage /></ProtectedRoute> 
       }
     ]
   },
