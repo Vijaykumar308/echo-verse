@@ -4,7 +4,7 @@ import React from 'react'
 function TopHeader({headerName, tagline}) {
   return (
     <Banner style={{marginBottom:"70px"}}>
-      <div className='fixed w-[60%]'>
+      <div className='fixed w-[60%] z-10'>
         <div className="flex w-full justify-between border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
           <div className="mx-auto flex items-center">
             <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">

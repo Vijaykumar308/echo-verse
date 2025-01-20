@@ -3,6 +3,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "./ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 
+import { Heart, Share, Bookmark } from "lucide-react"
+
 function SocialMediaCard({ username, profilePic, postImage, likes, caption }) {
     const [isFollowing, setIsFollowing] = useState(false)
     const [likeCount, setLikeCount] = useState(likes)
