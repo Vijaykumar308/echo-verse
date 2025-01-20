@@ -5,9 +5,6 @@ import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
 import { useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 
-// import { Button } from '@/components/ui/button';
-// import SocialMediaCard from '@/components/SocialMediaCard';
-
 function Dashboard() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading]= useState(false);
@@ -53,12 +50,6 @@ function Dashboard() {
                     {
                         data.map((item, index) => {
                             return <PostCard key={index} item={item} />
-                            // return <SocialMediaCard key={index} 
-                            // username="johndoe"
-                            // profilePic="/placeholder.svg?height=40&width=40"
-                            // postImage="/placeholder.svg?height=400&width=400"
-                            // likes={1337}
-                            // caption="Just another day in paradise! #vacation #beach" />
                         })
                     }
                 </div>
