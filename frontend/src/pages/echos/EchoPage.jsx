@@ -1,7 +1,7 @@
 import React from 'react'
 import TopHeader from '../../components/TopHeader'
 import { Tabs } from "flowbite-react";
-import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
+import { HiAdjustments } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
 import { useSelector } from 'react-redux';
 import PostCard from '../../components/PostCard';
