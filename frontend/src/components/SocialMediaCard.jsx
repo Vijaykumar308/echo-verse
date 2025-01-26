@@ -12,6 +12,7 @@ function SocialMediaCard({ username, profilePic, postImage, likes, caption }) {
     const [isSaved, setIsSaved] = useState(false)
 
     const handleFollow = () => setIsFollowing(!isFollowing)
+    
     const handleLike = () => {
         setIsLiked(!isLiked)
         setLikeCount(isLiked ? likeCount - 1 : likeCount + 1)
