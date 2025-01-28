@@ -132,7 +132,6 @@ function CreatePost() {
               required
             />
           </div>
-
           {/* Post Button */}
           <button
             type="submit"
