@@ -1,22 +1,16 @@
 import React from 'react'
 import {Outlet} from "react-router-dom";
-import Sidebar from '../pages/dashboard/Sidebar';
-import RightSidebar from '../pages/dashboard/RightSidebar';
+import Header from './Header';
+
 
 function Layout() {
   return (
     <>
-    <div className='md:flex md:min-h-screen'>
-      <aside className="md:fixed sm:min-h-screen sm:w-44 lg:w-52 bg-gray-50 border-r flex flex-col justify-between">
-        <Sidebar />
-      </aside>
-      <div className='flex-1 md:ml-[15%] md:mr-[25%]'>
+      <Header />
+      <div className='contaier px-3'>
         <Outlet />
       </div>
-
-      <RightSidebar />
-    </div>
-  </>
+    </>
   )
 }
 
