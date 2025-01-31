@@ -50,15 +50,14 @@ function Dashboard() {
                     }
                     { 
                         authUserPosts.map((item) => {
-                            console.log(item);
+                            // console.log(item);
                             return <UserContentCard key={crypto.randomUUID()} 
                             category={item.category}
                             content={item.content}
                             authorName= {item.authorDetails.username}
                             authorImage="/placeholder.svg?height=40&width=40"
                             createdAt= {item.createdAt}
-                            onShare= {function() {console.log('post shared clicked..');}}
-                            
+                            pkId={item._id}
                          />
                         })
                     }

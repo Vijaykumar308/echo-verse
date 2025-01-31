@@ -3,8 +3,12 @@ import { Share2 } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { UserSharePopup } from "./UserSharePopup"
+import { useState } from "react"
 
-function UserContentCard({category, content, authorName, authorImage, createdAt, onShare }) {
+function UserContentCard({pkId, category, content, authorName, authorImage, createdAt }) {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
       <Card className="w-full max-w-md mx-auto bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300">
         <CardHeader className="flex flex-row items-center gap-4 p-4">
@@ -25,9 +29,10 @@ function UserContentCard({category, content, authorName, authorImage, createdAt,
         </CardContent>
         <CardFooter className="flex justify-between items-center p-4 bg-muted/50">
           <p className="text-sm text-muted-foreground">Posted {format(createdAt, "h:mm a")}</p>
-          <Button variant="outline" size="sm" onClick={onShare} className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => setIsOpen(true)} className="flex items-center gap-2">
             <Share2 className="w-4 h-4" />
             Share
+            {isOpen &&  <UserSharePopup setIsOpen={setIsOpen} /> }
           </Button>
         </CardFooter>
       </Card>
