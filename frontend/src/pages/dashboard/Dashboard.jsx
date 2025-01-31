@@ -5,6 +5,7 @@ import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
 import { useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 import { useSelector } from 'react-redux';
+import UserContentCard from '@/components/UserContentCard';
 
 function Dashboard() {
     const [data, setData] = useState([]);
@@ -49,7 +50,16 @@ function Dashboard() {
                     }
                     { 
                         authUserPosts.map((item) => {
-                            return <PostCard key={crypto.randomUUID()} item={item} />
+                            console.log(item);
+                            return <UserContentCard key={crypto.randomUUID()} 
+                            category={item.category}
+                            content={item.content}
+                            authorName= {item.authorDetails.username}
+                            authorImage="/placeholder.svg?height=40&width=40"
+                            createdAt= {item.createdAt}
+                            onShare= {function() {console.log('post shared clicked..');}}
+                            
+                         />
                         })
                     }
                 </div>
