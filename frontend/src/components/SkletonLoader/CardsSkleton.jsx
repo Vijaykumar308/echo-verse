@@ -2,7 +2,7 @@ import React from 'react'
 
 function CardsSkleton() {
   return (
-    <div className="max-w-md bg-white border rounded-lg shadow-md overflow-hidden">
+    <div className="w-full bg-white border rounded-lg shadow-md overflow-hidden">
       <div className="p-4 flex items-center justify-between animate-pulse">
         <div className="flex items-center space-x-4">
           <div className="w-10 h-10 rounded-full bg-gray-300"></div>
