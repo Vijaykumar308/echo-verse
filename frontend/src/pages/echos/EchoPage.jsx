@@ -38,7 +38,7 @@ function EchoPage() {
 
   return (
     <>
-        <TopHeader headerName="Echos" tagline="Content shared by others that resonate with you or the community" />
+        {/* <TopHeader headerName="Echos" tagline="Content shared by others that resonate with you or the community" /> */}
         <div>
             <Tabs aria-label="Tabs with underline" variant="underline" style={{    position: "fixed",
                 width:"60%",

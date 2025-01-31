@@ -4,11 +4,12 @@ import TopHeader from '../../components/TopHeader';
 import CardSkleton from "../../components/SkletonLoader/CardsSkleton";
 import { useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
+import { useSelector } from 'react-redux';
 
 function Dashboard() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading]= useState(false);
-
+    const {authUserPosts} = useSelector(store => store.posts);
     const [token, setToken] = useToken();
     const navigate = useNavigate();
 
@@ -39,17 +40,16 @@ function Dashboard() {
 
     return (
         <>
-            {/* <TopHeader headerName="Stream" tagline="A continuous flow of thoughts and ideas" /> */}
             <main>
                 <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
-                {  isLoading && 
-                    Array.from({ length: 10 }).map((_, index) => {
-                        return <CardSkleton key={index} />
-                    })
-                }
-                    {
-                        data.map((item, index) => {
-                            return <PostCard key={index} item={item} />
+                    {  isLoading && 
+                        Array.from({ length: 10 }).map((_, index) => {
+                            return <CardSkleton key={index} />
+                        })
+                    }
+                    { 
+                        authUserPosts.map((item) => {
+                            return <PostCard key={crypto.randomUUID()} item={item} />
                         })
                     }
                 </div>

@@ -61,7 +61,7 @@ function CreatePost() {
 
   return (
     <>
-    <TopHeader headerName="Post" tagline="For sharing what’s on your mind, whether text or anything creative"></TopHeader>
+    {/* <TopHeader headerName="Post" tagline="For sharing what’s on your mind, whether text or anything creative"></TopHeader> */}
     <div>
       <div className="lg:max-w-4xl md:max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
