@@ -1,20 +1,40 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Navigate, NavLink, Outlet, useNavigate } from 'react-router-dom';
 // import { IoMenu } from "react-icons/io5";
 import { TiHome } from "react-icons/ti";
 import { FaShare } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
 import { Button } from 'flowbite-react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Share2, Menu } from "lucide-react"
+import axios from 'axios';
+import { setAuthUser } from '@/redux/authSlice';
+import { setPosts } from '@/redux/postSlice';
+import { toast } from 'sonner';
 
 function Header() {
-    const {username} = useSelector(state => state.user.user);
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const {username} = useSelector(state => state?.user?.user);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+
+    const handleLogout = async() => {
+      console.log(import.meta.VITE_BACKEND_BASE_URL);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/logout`);
+      console.log(res);
+      if(res.data.success) {
+        toast.success(res.data.message);
+        dispatch(setAuthUser(null));
+        dispatch(setPosts(null));
+        sessionStorage.removeItem('token');
+        navigate('/login');
+      }
+      else {
+        console.log('goes in else');
+      }
+    }
 
   return (
     <>
@@ -43,9 +63,9 @@ function Header() {
           <div className="flex items-center">
 
             <div className="hidden md:flex items-center ml-4 space-x-2">
-                <span className="px-4">Welcome, User123</span>
-                <Button variant="outline" className="text-white border-white hover:bg-white hover:text-[#0c2d54]">
-                Logout
+                <span className="px-4">Welcome, {username}</span>
+                <Button variant="outline" onClick={handleLogout} className="text-white border-white hover:bg-white hover:text-[#0c2d54]">
+                 Logout
                 </Button>
             </div>
 

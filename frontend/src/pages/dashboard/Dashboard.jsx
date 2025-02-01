@@ -42,7 +42,7 @@ function Dashboard() {
     return (
         <>
             <main>
-                <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10'>
+                <div className='grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-10'>
                     {  isLoading && 
                         Array.from({ length: 10 }).map((_, index) => {
                             return <CardSkleton key={index} />
@@ -50,7 +50,7 @@ function Dashboard() {
                     }
                     { 
                         authUserPosts.map((item) => {
-                            console.log(item);
+                            // console.log(item);
                             return <UserContentCard key={crypto.randomUUID()} 
                             title={item.title}
                             category={item.category}
