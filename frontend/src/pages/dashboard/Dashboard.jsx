@@ -42,7 +42,7 @@ function Dashboard() {
     return (
         <>
             <main>
-                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10'>
+                <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10'>
                     {  isLoading && 
                         Array.from({ length: 10 }).map((_, index) => {
                             return <CardSkleton key={index} />
