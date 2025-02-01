@@ -44,19 +44,19 @@ function Header() {
         <nav className="hidden md:block">
             <ul className="flex space-x-4">
             <li>
-                <a href="#" className="hover:text-[#a3c1e0]">
-                Home
-                </a>
+                <NavLink to="/" className="hover:text-[#a3c1e0]">
+                  Home
+                </NavLink>
             </li>
             <li>
-                <a href="#" className="hover:text-[#a3c1e0]">
-                Explore
-                </a>
+                <NavLink to="/create-post" className="hover:text-[#a3c1e0]">
+                  Create Post
+                </NavLink>
             </li>
             <li>
-                <a href="#" className="hover:text-[#a3c1e0]">
-                My Content
-                </a>
+                <NavLink to="/share-post" className="hover:text-[#a3c1e0]">
+                  Share Post
+                </NavLink>
             </li>
             </ul>
         </nav>
@@ -68,10 +68,6 @@ function Header() {
                  Logout
                 </Button>
             </div>
-
-            <Button variant="ghost" className="md:hidden ml-2" onClick={toggleMenu}>
-              <Menu className="h-6 w-6" />
-            </Button>
           </div>
         </div>
       </header>

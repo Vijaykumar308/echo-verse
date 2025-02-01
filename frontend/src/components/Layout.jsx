@@ -6,7 +6,7 @@ function Layout() {
   return (
     <>
       <Header />
-      <div className='contaier px-5 mt-20 mb-20'>
+      <div className='contaier px-5'>
         <Outlet />
       </div>
     </>
