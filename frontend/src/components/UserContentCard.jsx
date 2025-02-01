@@ -20,7 +20,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
         </p>
       </CardContent>
       <CardFooter className="flex justify-between items-center">
-        <span className="text-sm text-gray-500">{authorName}</span>
+        <span className="text-sm text-gray-500">{format(createdAt, "MMMM d, yyyy")}</span>
         <Button className="bg-[#0c2d54] hover:bg-[#183d6d] text-white" onClick={() => setIsOpen(true)}>
           <Share2 className="mr-2 h-4 w-4 text-white" /> Share
         </Button>
