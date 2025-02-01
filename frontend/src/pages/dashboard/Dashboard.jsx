@@ -50,8 +50,9 @@ function Dashboard() {
                     }
                     { 
                         authUserPosts.map((item) => {
-                            // console.log(item);
+                            console.log(item);
                             return <UserContentCard key={crypto.randomUUID()} 
+                            title={item.title}
                             category={item.category}
                             content={item.content}
                             authorName= {item.authorDetails.username}
