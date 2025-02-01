@@ -9,8 +9,6 @@ import { useState } from "react"
 function UserContentCard({pkId, title, category, content, authorName, authorImage, createdAt }) {
     const [isOpen, setIsOpen] = useState(false);
 
-
-
     return (
       <Card key={pkId} className="bg-white shadow-lg">
       <CardHeader>
