@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserContentCard from '@/components/UserContentCard';
 import { Input } from '@/components/ui/input';
 import { setPosts } from '@/redux/postSlice';
+import { NoResultsCard } from '@/components/NoResultsCard';
 
 function Dashboard() {
     const [data, setData] = useState([]);
@@ -64,7 +65,8 @@ function Dashboard() {
                 <Input placeholder="Search..." onChange={handleSearch}/>
             </div>
             
-            <main>
+            <main className='flex'>
+                { (!contnet.length) ? <div> <NoResults  Card /> </div> :
                 <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
                     {  isLoading && 
                         Array.from({ length: 10 }).map((_, index) => {
@@ -72,8 +74,8 @@ function Dashboard() {
                         })
                     }
                     { 
+                       
                         contnet.map((item) => {
-                            // console.log(item);
                             return <UserContentCard key={crypto.randomUUID()} 
                             title={item.title}
                             category={item.category}
@@ -86,6 +88,7 @@ function Dashboard() {
                         })
                     }
                 </div>
+                }
             </main>
         </>
                
