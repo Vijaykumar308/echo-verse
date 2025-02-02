@@ -17,9 +17,6 @@ function Dashboard() {
     const [token, setToken] = useToken();
     const navigate = useNavigate();
 
-    const [searchTerm, setSearchTerm] = useState("");
-    const dispatch = useDispatch();
-
     const [contnet, setContent] = useState([...authUserPosts]);
     useEffect(() => {
         if(!token) {
@@ -27,34 +24,13 @@ function Dashboard() {
         }
     }, [token])
 
-    const getData = async() => {
-        try{
-            setIsLoading(true);
-            const resp = await fetch("https://dummyjson.com/posts");
-            const actualData = await resp.json();
-            setData(actualData.posts)
-        }
-        catch(err){
-            console.log(err);
-        }
-        finally{
-            setIsLoading(false)
-        }
-    }
-
-    useEffect(() => {
-       getData();  
-    },[]);
-
     const handleSearch = (e) => {
-        console.log({authUserPosts});
-        console.log({contnet});
-
+        
         if(e.target.value === "") {
             setContent([...authUserPosts]) 
             return;
         }
-        
+
         const filterItems = contnet.filter((item) => item.title.toLowerCase().includes(e.target.value));
         setContent(filterItems);
     }
@@ -65,8 +41,8 @@ function Dashboard() {
                 <Input placeholder="Search..." onChange={handleSearch}/>
             </div>
             
-            <main className='flex'>
-                { (!contnet.length) ? <div> <NoResults  Card /> </div> :
+            <main>
+                { (!contnet.length) ? <div> <NoResultsCard /> </div> :
                 <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
                     {  isLoading && 
                         Array.from({ length: 10 }).map((_, index) => {
