@@ -84,3 +84,12 @@ export const logout = catchAsyncError(async(req, res, next) => {
         message:"Logged out Successfully"
     })
 })
+
+export const getAllUsers = catchAsyncError(async(req, res, next) => {
+    const users = await User.find().select("_id username email");
+    console.log(users);
+    res.status(200).json({
+        success:200,
+        users,
+    })
+});
