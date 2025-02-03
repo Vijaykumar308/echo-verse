@@ -5,9 +5,31 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 // import type { UserSharePopupProps } from "../types/user-share"
 import { useUserSearch } from "../hooks/useUserSearch";
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
-  const { searchTerm, setSearchTerm, filteredUsers, selectedUsers, toggleUserSelection } = useUserSearch();
+  const [users, setUsers] = useState([]);
+    
+    const fetchAllUsers = async() => {
+      try {
+        const usersData = await axios(`${import.meta.env.VITE_BACKEND_BASE_URL}/getAllUsers`);
+        console.log('userData: ',usersData);
+        return usersData.data.users;
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    useEffect(() => {
+      fetchAllUsers()
+      .then((res) => {setUsers((prevUsers) => [...prevUsers, ...res])})
+      .catch((err) => {console.log(err)})
+    }, []);
+
+    console.log(users);
+
+  const { searchTerm, setSearchTerm, filteredUsers, selectedUsers, toggleUserSelection } = useUserSearch(users);
 
   const handleShare = () => {
     console.log('post shared..');
@@ -35,7 +57,7 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
           </div>
           <div className="grid gap-2 max-h-[200px] overflow-y-auto">
             {filteredUsers.map((user) => (
-              <div key={user.id} className="flex items-center space-x-2 p-2 hover:bg-[#f0f4f8] rounded-md">
+              <div key={user._id} className="flex items-center space-x-2 p-2 hover:bg-[#f0f4f8] rounded-md">
                 <Checkbox
                   id={`user-${user.id}`}
                   checked={selectedUsers.some((u) => u.id === user.id)}
@@ -48,10 +70,10 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
                 >
                   <Avatar className="h-8 w-8 border border-[#0c2d54]">
                     <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className="bg-[#0c2d54] text-white">{user.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback className="bg-[#0c2d54] uppercase text-white">{user.username.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="text-[#0c2d54]">{user.name}</div>
+                    <div className="text-[#0c2d54]">{user.username}</div>
                     <div className="text-xs text-[#183d6d]">{user.email}</div>
                   </div>
                 </label>
