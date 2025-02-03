@@ -15,7 +15,6 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
   const fetchAllUsers = async() => {
     try {
       const usersData = await axios(`${import.meta.env.VITE_BACKEND_BASE_URL}/getAllUsers`);
-      console.log('userData: ',usersData);
       return usersData.data.users;
       
     } catch (error) {
@@ -38,7 +37,7 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
   }
 
   const handleShare = () => {
-    console.log('post shared..');
+    console.log('post shared..', selectedUsers);
   }
 
   const onClose = () => {
