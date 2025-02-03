@@ -33,7 +33,7 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
   
   const toggleUserSelection = (user) => {
     setSelectedUsers((prev) =>
-      prev.some((u) => u.id === user.id) ? prev.filter((u) => u.id !== user.id) : [...prev, user],
+      prev.some((u) => u._id === user._id) ? prev.filter((u) => u._id !== user._id) : [...prev, user],
     )
   }
 
@@ -65,13 +65,13 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
             {filteredUsers.map((user) => (
               <div key={user._id} className="flex items-center space-x-2 p-2 hover:bg-[#f0f4f8] rounded-md">
                 <Checkbox
-                  id={`user-${user.id}`}
-                  checked={selectedUsers.some((u) => u.id === user.id)}
+                  id={`user-${user._id}`}
+                  checked={selectedUsers.some((u) => u._id === user._id)}
                   onCheckedChange={() => toggleUserSelection(user)}
                   className="border-[#0c2d54] text-[#0c2d54] focus:ring-[#0c2d54]"
                 />
                 <label
-                  htmlFor={`user-${user.id}`}
+                  htmlFor={`user-${user._id}`}
                   className="flex items-center space-x-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer w-full"
                 >
                   <Avatar className="h-8 w-8 border border-[#0c2d54]">
