@@ -7,14 +7,16 @@ import { UserSharePopup } from "./UserSharePopup"
 import { useState } from "react"
 import { Edit2, Trash2 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { BookOpen } from 'lucide-react';
+import { Captions } from 'lucide-react';
 
 function UserContentCard({pkId, title, category, content, authorName, authorImage, createdAt }) {
     const [isOpen, setIsOpen] = useState(false);
-
     return (
       <Card key={pkId} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-[#0c2d54] to-[#183d6d] text-white">
-        <CardTitle className="text-xl font-semibold">{title}</CardTitle>
+        <CardTitle className="text-xl font-semibold flex gap-1"> <Captions size={20} /> {title}</CardTitle>
+        <p className="capitalize flex items-center gap-2"> <BookOpen size={16}/> {category}</p>
       </CardHeader>
       <CardContent className="p-6">
         <p className="text-gray-700 leading-relaxed">{content}</p>
@@ -60,14 +62,6 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-
-          {/* <Button
-            variant="default"
-            className="bg-[#0c2d54] hover:bg-[#183d6d] text-white"
-            onClick={() => setIsOpen(true)}
-          >
-            <Share2 className="mr-2 h-4 w-4" />
-          </Button> */}
         </div>
       </CardFooter>
       {isOpen && <UserSharePopup setIsOpen={setIsOpen} />}
