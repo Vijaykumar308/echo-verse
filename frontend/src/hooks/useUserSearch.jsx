@@ -11,26 +11,16 @@ import { useState, useMemo, useEffect } from "react"
 
 export function useUserSearch(users) {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedUsers, setSelectedUsers] = useState([])
-  
+ 
   const filteredUsers = users.filter((user) => 
         user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-
-
-  const toggleUserSelection = (user) => {
-    setSelectedUsers((prev) =>
-      prev.some((u) => u.id === user.id) ? prev.filter((u) => u.id !== user.id) : [...prev, user],
-    )
-  }
+  )
 
   return {
     searchTerm,
     setSearchTerm,
-    filteredUsers,
-    selectedUsers,
-    toggleUserSelection,
+    filteredUsers
   }
 }
 

@@ -10,26 +10,32 @@ import axios from "axios"
 
 export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
   const [users, setUsers] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState([])
     
-    const fetchAllUsers = async() => {
-      try {
-        const usersData = await axios(`${import.meta.env.VITE_BACKEND_BASE_URL}/getAllUsers`);
-        console.log('userData: ',usersData);
-        return usersData.data.users;
-        
-      } catch (error) {
-        console.log(error);
-      }
+  const fetchAllUsers = async() => {
+    try {
+      const usersData = await axios(`${import.meta.env.VITE_BACKEND_BASE_URL}/getAllUsers`);
+      console.log('userData: ',usersData);
+      return usersData.data.users;
+      
+    } catch (error) {
+      console.log(error);
     }
-    useEffect(() => {
-      fetchAllUsers()
-      .then((res) => {setUsers((prevUsers) => [...prevUsers, ...res])})
-      .catch((err) => {console.log(err)})
-    }, []);
+  }
 
-    console.log(users);
+  useEffect(() => {
+    fetchAllUsers()
+    .then((res) => {setUsers((prevUsers) => [...prevUsers, ...res])})
+    .catch((err) => {console.log(err)})
+  }, []);
 
-  const { searchTerm, setSearchTerm, filteredUsers, selectedUsers, toggleUserSelection } = useUserSearch(users);
+  const { searchTerm, setSearchTerm, filteredUsers} = useUserSearch(users);
+  
+  const toggleUserSelection = (user) => {
+    setSelectedUsers((prev) =>
+      prev.some((u) => u.id === user.id) ? prev.filter((u) => u.id !== user.id) : [...prev, user],
+    )
+  }
 
   const handleShare = () => {
     console.log('post shared..');
