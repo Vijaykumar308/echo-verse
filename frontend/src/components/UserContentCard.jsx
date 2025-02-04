@@ -12,6 +12,19 @@ import { Captions } from 'lucide-react';
 
 function UserContentCard({pkId, title, category, content, authorName, authorImage, createdAt }) {
     const [isOpen, setIsOpen] = useState(false);
+
+    const handlePostEdit = (postId) => {
+      console.log({postId});
+    }
+
+    const handlePostDelete = (postId) => {
+      console.log({postId});
+    }
+
+    const handlePostShare = (postId) => {
+      console.log({postId});
+    }
+
     return (
       <Card key={pkId} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-[#0c2d54] to-[#183d6d] text-white">
@@ -27,7 +40,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+                <Button onClick={() => handlePostEdit(pkId)} variant="outline" size="icon" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
                   <Edit2 className="h-4 w-4" />
                 </Button>
               </TooltipTrigger>
@@ -40,7 +53,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" className="text-red-600 hover:text-red-700 hover:bg-red-50">
+                <Button onClick={() => handlePostDelete(pkId)} variant="outline" size="icon" className="text-red-600 hover:text-red-700 hover:bg-red-50">
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </TooltipTrigger>
@@ -53,7 +66,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" className="bg-[#0c2d54] hover:bg-[#183d6d] text-white"   onClick={() => setIsOpen(true)}>
+                <Button variant="outline" size="icon" className="bg-[#0c2d54] hover:bg-[#183d6d] text-white" onClick={() =>setIsOpen(true)}>
                   <Share2 className="h-4 w-4" />
                 </Button>
               </TooltipTrigger>
@@ -64,7 +77,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
           </TooltipProvider>
         </div>
       </CardFooter>
-      {isOpen && <UserSharePopup setIsOpen={setIsOpen} />}
+      {isOpen && <UserSharePopup setIsOpen={setIsOpen} postId={pkId} />}
     </Card>
       // <Card className="w-full max-w-md mx-auto bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300">
       //   <CardHeader className="flex flex-row items-center gap-4 p-4">
