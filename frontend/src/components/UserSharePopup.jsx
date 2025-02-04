@@ -8,7 +8,7 @@ import { useUserSearch } from "../hooks/useUserSearch";
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
+export function UserSharePopup({ isOpen = true, setIsOpen, postId, onShare }) {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([])
     
@@ -38,8 +38,9 @@ export function UserSharePopup({ isOpen = true, setIsOpen, onShare }) {
 
   const handleShare = () => {
     console.log('post shared..', selectedUsers);
+    console.log('post Id..', postId);
   }
-
+  
   const onClose = () => {
     setIsOpen(false);
   }
