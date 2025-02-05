@@ -40,7 +40,7 @@ function EchoPage() {
     <>
         {/* <TopHeader headerName="Echos" tagline="Content shared by others that resonate with you or the community" /> */}
         <div>
-            <Tabs aria-label="Tabs with underline" variant="underline" style={{    position: "fixed",
+            {/* <Tabs aria-label="Tabs with underline" variant="underline" style={{    position: "fixed",
                 width:"60%",
                 background: "#ffffff",
                 marginTop: "-17px",
@@ -85,7 +85,7 @@ function EchoPage() {
                 Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
                 control the content visibility and styling.
             </Tabs.Item>            
-            </Tabs>
+            </Tabs> */}
         </div>
     </>
   )
