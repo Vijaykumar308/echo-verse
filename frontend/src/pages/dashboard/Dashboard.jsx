@@ -37,7 +37,7 @@ function Dashboard() {
 
     return (
         <>
-            <div className='w-1/3 py-5'>
+            <div className='w-full md:w-1/2  py-5'>
                 <Input placeholder="Search..." onChange={handleSearch}/>
             </div>
             
