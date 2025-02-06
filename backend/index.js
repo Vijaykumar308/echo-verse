@@ -8,6 +8,7 @@ import connectDB from "./dbconn.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import userRouter from "./routes/user.route.js";
 import postRouter from "./routes/post.route.js";
+import sharePostRouter  from "./routes/sharePost.route.js";
 
 dotenv.config({});
 
@@ -26,7 +27,7 @@ app.use(urlencoded({extended:true}));
 
 app.use("/api/v1", userRouter);
 app.use("/api/v1/post", postRouter);
-
+app.use("/api/v1", sharePostRouter);
 
 app.use(errorMiddleware);
 app.listen(PORT, () => {
