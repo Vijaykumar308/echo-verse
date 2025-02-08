@@ -1,3 +1,10 @@
+Connect mongoDB using CMD
+mongosh  [enter]
+
+connectWith Cloud mongoDB
+mongosh <mongodb Uri>
+
+
 1. create a post sharing model
 2. make the post sharing api.
 3. implement sharing features to the fronend

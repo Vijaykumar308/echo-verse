@@ -10,6 +10,11 @@ const sharedPostSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true
+    },
+    userFromId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
     }
 }, 
 {timeStamps:true}

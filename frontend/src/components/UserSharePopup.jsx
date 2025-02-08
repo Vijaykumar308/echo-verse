@@ -9,11 +9,13 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import useToken from "@/hooks/useToken"
 import { toast } from "sonner"
+import { useSelector } from "react-redux"
 
 export function UserSharePopup({ isOpen = true, setIsOpen, postId, onShare }) {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const token = useToken();
+  const authUserId = useSelector(state => state.user.user._id);
     
   const fetchAllUsers = async() => {
     try {
@@ -39,16 +41,11 @@ export function UserSharePopup({ isOpen = true, setIsOpen, postId, onShare }) {
     )
   }
 
-  const handlePostShare = async(payload) => {
-    
-    
-  }
-
   const handleShare = async() => {
     console.log('post shared..', selectedUsers);
     console.log('post Id..', postId);
     try {
-      const payload = {postId, sharedUserId:selectedUsers[0]._id };
+      const payload = {postId, sharedUserId:selectedUsers, userFromId: authUserId};
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/sharedPost`, payload, {
         headers:{
           "Authorization": token
