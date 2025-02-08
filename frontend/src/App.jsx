@@ -28,7 +28,7 @@ const browserRouter = createBrowserRouter([
       {
         path:'share-post',
         // element: <ProtectedRoute><Tabs /></ProtectedRoute> 
-        element: <ProtectedRoute><EchoPage /></ProtectedRoute> 
+        element: <ProtectedRoute><EchoPage /></ProtectedRoute>,
       },
       {
         path:'mypost', 
