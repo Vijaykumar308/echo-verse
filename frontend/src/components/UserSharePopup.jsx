@@ -7,10 +7,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useUserSearch } from "../hooks/useUserSearch";
 import { useEffect, useState } from "react"
 import axios from "axios"
+import useToken from "@/hooks/useToken"
+import { toast } from "sonner"
 
 export function UserSharePopup({ isOpen = true, setIsOpen, postId, onShare }) {
   const [users, setUsers] = useState([]);
-  const [selectedUsers, setSelectedUsers] = useState([])
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const token = useToken();
     
   const fetchAllUsers = async() => {
     try {
@@ -36,9 +39,27 @@ export function UserSharePopup({ isOpen = true, setIsOpen, postId, onShare }) {
     )
   }
 
-  const handleShare = () => {
+  const handlePostShare = async(payload) => {
+    
+    
+  }
+
+  const handleShare = async() => {
     console.log('post shared..', selectedUsers);
     console.log('post Id..', postId);
+    try {
+      const payload = {postId, sharedUserId:selectedUsers[0]._id };
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/sharedPost`, payload, {
+        headers:{
+          "Authorization": token
+        }
+      });
+      if(response.data.success){
+        toast.success(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.data.message);
+    }
   }
   
   const onClose = () => {
