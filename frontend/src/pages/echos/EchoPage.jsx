@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Skeleton, Tabs } from 'antd';
 import { useSelector } from 'react-redux';
 import PostCard from '@/components/PostCard';
 import axios from 'axios';
 import useToken from '@/hooks/useToken';
 import useLoader from '@/hooks/useLoader';
 import CardsSkleton from '@/components/SkletonLoader/CardsSkleton';
-
-const { TabPane } = Tabs;
+import { Tabs } from "flowbite-react";
 
 function EchoPage() {
-    const {_id:authUserId, username:authUsername} = useSelector(store => store.user.user);
+    const { _id: authUserId, username: authUsername } = useSelector(store => store.user.user);
     const token = useToken();
     const [posts, setPost] = useState([]);
     const { isLoading, startLoading, stopLoading } = useLoader();
@@ -41,9 +39,9 @@ function EchoPage() {
 
     return (
         <div className='container mx-auto'>
-            <Tabs defaultActiveKey="1">
-                <TabPane tab="I've Shared" key="1">
-                    <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
+            <Tabs aria-label="Default tabs" variant="default">
+                <Tabs.Item active title="Post I've Shared">
+                <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
                         {/* Show skeleton loader when data is loading */}
                         {isLoading && 
                             Array.from({ length: 10 }).map((_, index) => (
@@ -61,11 +59,22 @@ function EchoPage() {
                             !isLoading && <p>No posts available</p>  // If no posts are available
                         )}
                     </div>
-                </TabPane>
-
-                <TabPane tab="Content Received" key="2">
-                    Tab 2
-                </TabPane>
+                </Tabs.Item>
+                <Tabs.Item title="Post's Received">
+                    This is <span className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</span>.
+                    Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.
+                </Tabs.Item>
+                <Tabs.Item title="Settings">
+                    This is <span className="font-medium text-gray-800 dark:text-white">Settings tab's associated content</span>.
+                    Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.
+                </Tabs.Item>
+                <Tabs.Item title="Contacts">
+                    This is <span className="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</span>.
+                    Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.
+                </Tabs.Item>
             </Tabs>
         </div>
     );
