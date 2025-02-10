@@ -26,7 +26,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
     }
 
     return (
-      <Card key={pkId} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+      <Card key={pkId} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-fit">
       <CardHeader className="bg-gradient-to-r from-[#0c2d54] to-[#183d6d] text-white">
         <CardTitle className="text-xl font-semibold flex gap-1"> <Captions size={20} /> {title}</CardTitle>
         <p className="capitalize flex items-center gap-2"> <BookOpen size={16}/> {category}</p>

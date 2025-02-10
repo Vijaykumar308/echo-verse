@@ -13,7 +13,14 @@ function PostCard({post, authUsername, profilePhoto}) {
           alt={`${post.username}'s profile`}
           className="w-10 h-10 rounded-full mr-3"
         />
-        <span className="font-semibold text-gray-800">{post.sharedToDetails.username}</span>
+        <div className='flex flex-col'>
+        <span className="font-semibold text-gray-800">
+          {post.sharedToDetails.username}
+        </span>
+        <span className="text-xs text-gray-800">
+          {post.sharedToDetails.email}
+        </span>
+        </div>
       </div>
       <h2 className="text-xl font-bold mb-2 text-[#183d6d]">{post.postDetails.title}</h2>
       <p className="text-gray-600 mb-4">{post.postDetails.content}</p>
@@ -21,9 +28,9 @@ function PostCard({post, authUsername, profilePhoto}) {
         <Badge variant="secondary" className="bg-[#e6eef7] text-[#183d6d]">
           {post.postDetails.category}
         </Badge>
-        {/* <div className="text-sm text-gray-500">Shared on {formatDate(sharedOn,  "MMMM d, yyyy")}</div> */}
+        {/* <div className="text-sm text-gray-500">Shared on {formatDate(post.postDetails.createdAt,  "MMMM d, yyyy")}</div> */}
       </div>
-      {/* <div className="text-xs text-gray-400">Created on {formatDate(createdOn,  "MMMM d, yyyy")}</div> */}
+      <div className="text-xs text-gray-400">Created on {formatDate(post.postDetails.createdAt,  "MMMM d, yyyy")}</div>
     </div>
   </div>
   )
