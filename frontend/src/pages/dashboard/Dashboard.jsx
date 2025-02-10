@@ -17,7 +17,12 @@ function Dashboard() {
     const [token, setToken] = useToken();
     const navigate = useNavigate();
 
+    if(!authUserPosts) {
+        return <> <div className='flex justify-center items-center h-screen'> <NoResultsCard status={false} message="No Post Available"/>  </div>  </>;
+    }
+
     const [contnet, setContent] = useState([...authUserPosts]);
+
     useEffect(() => {
         if(!token) {
             navigate('/login');
@@ -44,24 +49,26 @@ function Dashboard() {
             <main>
                 { (!contnet.length) ? <div> <NoResultsCard /> </div> :
                 <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
+                {/* <div className='flex gap-10'> */}
                     {  isLoading && 
                         Array.from({ length: 10 }).map((_, index) => {
                             return <CardSkleton key={index} />
                         })
                     }
                     { 
-                       
-                        contnet.map((item) => {
-                            return <UserContentCard key={crypto.randomUUID()} 
-                            title={item.title}
-                            category={item.category}
-                            content={item.content}
-                            authorName= {item.authorDetails.username}
-                            authorImage="/placeholder.svg?height=40&width=40"
-                            createdAt= {item.createdAt}
-                            pkId={item._id}
-                            />
-                        })
+                       (!contnet) ? "No Post Available"  : (
+                           contnet.map((item) => {
+                               return <UserContentCard key={crypto.randomUUID()} 
+                               title={item.title}
+                               category={item.category}
+                               content={item.content}
+                               authorName= {item.authorDetails.username}
+                               authorImage="/placeholder.svg?height=40&width=40"
+                               createdAt= {item.createdAt}
+                               pkId={item._id}
+                               />
+                            })
+                        )
                     }
                 </div>
                 }

@@ -5,10 +5,6 @@ connectWith Cloud mongoDB
 mongosh <mongodb Uri>
 
 
-1. create a post sharing model
-2. make the post sharing api.
-3. implement sharing features to the fronend
-
 4. Create a post delete api
 5. integrate delete api to the fronend
 
