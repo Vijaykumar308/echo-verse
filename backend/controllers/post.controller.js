@@ -114,3 +114,27 @@ export const getAllPostExceptLoggedInUser = catchAsyncError(async(req, res, next
         return next(new ErrorHandler(error, 500));
     }
 })
+
+export const deletePost = catchAsyncError(async(req, res, next) => {
+    try {
+        const { postId } = req.body;
+        console.log(req.userId);
+
+        const postExist = await Post.findOne({author_id: new mongoose.Types.ObjectId(req.userId)});
+        
+        if(postExist) {
+            await Post.deleteOne({_id:postExist._id});
+        }
+        else {
+            return next(new ErrorHandler("Post Can not delete Something went wrong."));
+        }
+
+        res.status(200).json({
+            success:true,
+            message:"Post Delete successfully"
+        })
+        
+    } catch (error) {
+        return next(new ErrorHandler(error));
+    }
+});
