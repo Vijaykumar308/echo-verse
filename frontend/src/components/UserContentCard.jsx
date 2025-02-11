@@ -1,27 +1,32 @@
 import { format } from "date-fns"
-import { Share2 } from "lucide-react"
+import { Share2, BookOpen, Captions, Edit2, Trash2 } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { UserSharePopup } from "./UserSharePopup"
 import { useState } from "react"
-import { Edit2, Trash2 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { BookOpen } from 'lucide-react';
-import { Captions } from 'lucide-react';
+import DeleteConfirmationPopup from "./DeleteConfirmationPopup"
 
-function UserContentCard({pkId, title, category, content, authorName, authorImage, createdAt }) {
+
+function UserContentCard({pkId, title, category, content, createdAt }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
 
     const handlePostEdit = (postId) => {
       console.log({postId});
     }
 
-    const handlePostDelete = (postId) => {
-      console.log({postId});
+    const handleDeleteClicked = () => {
+      setIsDeletePopupOpen(true);
     }
 
-    const handlePostShare = (postId) => {
+    const handleDeleteConfirm = () => {
+      handlePostDelete(pkId)
+      setIsDeletePopupOpen(false)
+    }
+  
+    const handlePostDelete = (postId) => {
       console.log({postId});
     }
 
@@ -53,7 +58,7 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={() => handlePostDelete(pkId)} variant="outline" size="icon" className="text-red-600 hover:text-red-700 hover:bg-red-50">
+                <Button onClick={handleDeleteClicked} variant="outline" size="icon" className="text-red-600 hover:text-red-700 hover:bg-red-50">
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </TooltipTrigger>
@@ -78,6 +83,12 @@ function UserContentCard({pkId, title, category, content, authorName, authorImag
         </div>
       </CardFooter>
       {isOpen && <UserSharePopup setIsOpen={setIsOpen} postId={pkId} />}
+      
+      <DeleteConfirmationPopup
+        isOpen={isDeletePopupOpen}
+        onClose={() => setIsDeletePopupOpen(false)}
+        onConfirm={handleDeleteConfirm}
+      />
     </Card>
       // <Card className="w-full max-w-md mx-auto bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow duration-300">
       //   <CardHeader className="flex flex-row items-center gap-4 p-4">
