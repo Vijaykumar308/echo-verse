@@ -96,10 +96,16 @@ export const getSharedPost = catchAsyncError(async(req, res, next) => {
             success: true,
             data: {
                 userSender: sharedPosts.length > 0 ? sharedPosts[0].userSender[0] : null, 
-                SharedDetails: sharedPosts.map(post => ({
-                    postDetails: post.postDetails[0], 
-                    sharedToDetails: post.sharedToDetails[0]
-                }))
+                
+                SharedDetails: sharedPosts.map((post) => {
+                  const postDetails = {};
+                  if(post.postDetails.length > 0) {
+                    postDetails["postDetails"] = post.postDetails[0],
+                    postDetails["sharedToDetails"] = post.sharedToDetails[0]
+                    return postDetails;
+                  }
+                  return null;
+                }).filter((postDetails) => postDetails !== null)
             }
         };      
         return res.status(200).json(result);
