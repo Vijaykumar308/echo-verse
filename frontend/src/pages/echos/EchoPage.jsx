@@ -51,8 +51,7 @@ function EchoPage() {
 
                         {/* Render posts when data is available */}
                         {!isLoading && posts?.data?.SharedDetails?.length > 0 ? (
-                            posts.data.SharedDetails.map((item, index) => (
-                                console.log('item',item),
+                            posts.data.SharedDetails.map((item) => (
                                 <PostCard key={crypto.randomUUID()} post={item} authUsername={authUsername} />
                             ))
                         ) : (

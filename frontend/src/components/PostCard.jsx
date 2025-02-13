@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge"
 import React from 'react'
 
 function PostCard({post, authUsername, profilePhoto}) {
-  console.log('post: sff',post);
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-md h-fit">
     <div className="p-6">
