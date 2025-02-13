@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge"
 import React from 'react'
 
 function PostCard({post, authUsername, profilePhoto}) {
-  console.log('post: sff',post);
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-md h-fit">
     <div className="p-6">
@@ -22,15 +21,16 @@ function PostCard({post, authUsername, profilePhoto}) {
         </span>
         </div>
       </div>
-      <h2 className="text-xl font-bold mb-2 text-[#183d6d]">{post?.postDetails?.title}</h2>
-      <p className="text-gray-600 mb-4">{post?.postDetails?.content}</p>
+
       <div className="flex justify-between items-center mb-2">
-        <Badge variant="secondary" className="bg-[#e6eef7] text-[#183d6d]">
+        <Badge variant="secondary" className="bg-[#e6eef7] text-[#183d6d] capitalize">
           {post?.postDetails?.category}
         </Badge>
-        {/* <div className="text-sm text-gray-500">Shared on {formatDate(post.postDetails.createdAt,  "MMMM d, yyyy")}</div> */}
       </div>
-      {/* <div className="text-xs text-gray-400">Created on {formatDate(post?.postDetails?.createdAt,  "MMMM d, yyyy")}</div> */}
+
+      <h2 className="text-xl font-bold mb-2 text-[#183d6d]">{post?.postDetails?.title}</h2>
+      <p className="text-gray-600 mb-4">{post?.postDetails?.content}</p>
+      <div className="text-xs text-gray-400">Created on {formatDate(post?.postDetails?.createdAt,  "MMMM d, yyyy")}</div>
     </div>
   </div>
   )
