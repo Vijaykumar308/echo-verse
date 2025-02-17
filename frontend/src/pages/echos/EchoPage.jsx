@@ -25,7 +25,7 @@ function EchoPage() {
                 }
             );
             console.log(res.data);  // Check the structure of the API response
-            setPost(res.data);  // Assuming res.data is the expected object
+            setPost(res.data);      // Assuming res.data is the expected object
         } catch (err) {
             console.log(err);
         } finally {
