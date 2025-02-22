@@ -6,7 +6,7 @@ export const getUserId = (req, res, next) => {
   
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
       if (err) {
-        return res.status(401).json({ status:false, message: 'Invalid or expired token' });
+        return res.status(401).json({success:false, message: 'Invalid or expired token' });
       }
       
       req.userId = decoded.id;
