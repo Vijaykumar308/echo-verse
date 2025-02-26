@@ -7,7 +7,6 @@ import {Category} from "../models/category.model.js";
 import { OTHER } from "../utils/constants.js";
 import mongoose from "mongoose";
 
-
 async function callGPT(prompt) {
     if (!prompt) {
       alert("Please enter a prompt.");
